@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "590384651397",
+    "project_id": "couch-to-10k-testing",
+    "storage_bucket": "couch-to-10k-testing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590384651397:android:2258b621c6717fb8cf5dec",
+        "android_client_info": {
+          "package_name": "com.example.myloginapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590384651397-dmo8c217b7ce9ca7jmmkboutqc37okm2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myloginapp",
+            "certificate_hash": "694378e4112e36665de8e1eab30617b9ef39fef7"
+          }
+        },
+        {
+          "client_id": "590384651397-cvr0435egnqjmfggg7isf20rnf44pqo7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhnyM9HvY3xWk8E1zongNjv4NHxXY-vPk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590384651397-cvr0435egnqjmfggg7isf20rnf44pqo7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

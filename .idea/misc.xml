@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_cto10k_context.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_lifetime_metrics.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_main_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_main_program_module.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_new_user.xml" value="0.33" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_new_user2.xml" value="0.1" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_physical_paramenters.xml" value="0.33" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_physical_parameters.xml" value="0.33" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_pp_dropdown.xml" value="0.25" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_welcome_page.xml" value="0.33" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/welcome_page.xml" value="0.20677083333333332" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

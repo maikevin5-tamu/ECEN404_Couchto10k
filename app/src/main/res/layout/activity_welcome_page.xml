@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Welcome_Page">
+
+    <TextView
+        android:id="@+id/Welcome"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Welcome to Couch to 10k"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_margin="50dp"
+        android:paddingTop="10dp"/>
+
+    <TextView
+        android:id="@+id/Welcome_context_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Couch to 10k takes into account your body characteristics and physical conditions. This information will be used to tailor a personal program."
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Welcome"
+        android:paddingTop="100dp"/>
+
+    <TextView
+        android:id="@+id/Welcome_context_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Please enter the following information as accurately as possible. "
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Welcome_context_1"
+        android:paddingTop="70dp"/>
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/next_welcome"
+        android:text="Next"
+        app:layout_constraintTop_toBottomOf="@+id/Welcome_context_2"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="100dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
