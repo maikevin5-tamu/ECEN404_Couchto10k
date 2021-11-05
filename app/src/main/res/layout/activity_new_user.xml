@@ -20,7 +20,7 @@
         android:textSize="35dp"
         android:textStyle="bold" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/email_create"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         android:hint="Email"
         android:padding="20dp" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password_create"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
         android:drawablePadding="20dp"
         android:inputType="textPassword"/>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/password_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,14 +70,6 @@
         android:layout_marginBottom="20dp"
         android:text="Register" />
 
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/back_button_toLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="back"
-        android:layout_alignParentBottom="true"/>
 
 
 

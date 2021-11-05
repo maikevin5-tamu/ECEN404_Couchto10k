@@ -3,18 +3,37 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/drawable/selector.xml" value="0.23425925925925925" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_bottom_nav.xml" value="0.2601010101010101" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_cto10k_context.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_lifetime_metrics.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_main_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_main_program_module.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_new_user.xml" value="0.33" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_new_user.xml" value="0.1" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_new_user2.xml" value="0.1" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_physical_paramenters.xml" value="0.33" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_physical_parameters.xml" value="0.33" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_pp_dropdown.xml" value="0.25" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_program_week1.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_program_week10.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_program_week11.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_program_week12.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_program_week2.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_program_week3.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_program_week4.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_program_week5.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_program_week6.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_program_week7.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_program_week8.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_program_week9.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_running_metrics_dashboard.xml" value="0.1" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_select_week.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_welcome_page.xml" value="0.33" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/items_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/welcome_page.xml" value="0.20677083333333332" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/menu/menu.xml" value="0.1" />
       </map>
     </option>
   </component>

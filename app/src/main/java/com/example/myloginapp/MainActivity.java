@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView username = findViewById(R.id.email_signin);
-        TextView password = findViewById(R.id.password);
+        TextView password = findViewById(R.id.password_signin);
 
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
 
@@ -30,27 +30,14 @@ public class MainActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) { // right now just testing for working account
+                if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin"))
                     //correct
-                    Toast.makeText(MainActivity.this, "LOGIN SUCCESSFUL", Toast.LENGTH_SHORT).show();
-
-                    button = findViewById(R.id.loginbtn);
-
-                    button.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(MainActivity.this, MainMenu.class);
-                            startActivity(intent);
-                        }
-                    });
-                }
-                else {
+                    Toast.makeText(MainActivity.this,"LOGIN SUCCESSFUL",Toast.LENGTH_SHORT).show();
+                else
                     //incorrect
-                    Toast.makeText(MainActivity.this, "LOGIN FAILED", Toast.LENGTH_SHORT).show();
-                }
+                    Toast.makeText(MainActivity.this,"LOGIN FAILED",Toast.LENGTH_SHORT).show();
             }
         });
-
 
         button = findViewById(R.id.newuser);
 
