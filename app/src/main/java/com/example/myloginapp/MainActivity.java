@@ -1,52 +1,79 @@
 package com.example.myloginapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.material.button.MaterialButton;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
 
-    private Button button;
+    private Button loginBtn;
+    private Button NU_btn;
+    private EditText email;
+    private EditText password;
+
+
+    private FirebaseAuth auth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView username = findViewById(R.id.email_signin);
-        TextView password = findViewById(R.id.password_signin);
+        email = findViewById(R.id.email_signin);
+        password = findViewById(R.id.password_signin);
+        loginBtn = findViewById(R.id.loginbtn);
 
-        MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
+        auth = FirebaseAuth.getInstance();
 
-        //admin and admin
 
-        loginbtn.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin"))
-                    //correct
-                    Toast.makeText(MainActivity.this,"LOGIN SUCCESSFUL",Toast.LENGTH_SHORT).show();
-                else
-                    //incorrect
-                    Toast.makeText(MainActivity.this,"LOGIN FAILED",Toast.LENGTH_SHORT).show();
+                String txt_email = email.getText().toString();
+                String txt_password = password.getText().toString();
+                loginUser(txt_email, txt_password);
             }
         });
 
-        button = findViewById(R.id.newuser);
+        NU_btn = findViewById(R.id.newuser);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        NU_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, New_User.class);
                 startActivity(intent);
             }
         });
+
     }
+
+
+    private void loginUser(String email, String password) {
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, MainMenu.class);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Login Failed: "+task.getException(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
 }

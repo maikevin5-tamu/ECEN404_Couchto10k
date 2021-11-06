@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -13,18 +14,26 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class New_User extends AppCompatActivity {
 
-    private Button button_reg;
+    private Button registerBtn;
+    private EditText email;
+    private EditText password;
+    private EditText con_password;
 
-    private FirebaseAuth mAuth;
+    private FirebaseAuth auth;
 
-    TextInputEditText email_create;
-    TextInputEditText password_create;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://couch-to-10k-testing-default-rtdb.firebaseio.com/");
 
 
     @Override
@@ -32,54 +41,70 @@ public class New_User extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user);
 
+        email = findViewById(R.id.email_create);
+        password = findViewById(R.id.password_create);
+        con_password = findViewById(R.id.password_confirm);
 
-        email_create = findViewById(R.id.email_create);
-        password_create = findViewById(R.id.password_create);
-        mAuth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
-        button_reg = findViewById(R.id.Register); //register to welcome
+        registerBtn = findViewById(R.id.Register);
 
-        button_reg.setOnClickListener(new View.OnClickListener() {
+        registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                String txt_email = email.getText().toString();
+                String txt_password = password.getText().toString();
+                String txt_con_password = con_password.getText().toString();
 
+                //check empty fields
+                if (txt_email.isEmpty() || txt_password.isEmpty() ) {
+                    Toast.makeText(New_User.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                }
 
-                Intent intent = new Intent(New_User.this, Welcome_Page.class);
-                startActivity(intent);
+                //check passwords match
+                else if (!txt_password.equals(txt_con_password)){
+                    Toast.makeText(New_User.this, "Passwords are not matching", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    registerUser(txt_email, txt_password);
+
+                }
             }
         });
-/**
-        button_reg.setOnClickListener(view -> {
-            createUser();
-        });
     }
 
-    private void createUser() {
-        String email = email_create.getText().toString();
-        String password = password_create.getText().toString();
+    private void registerUser(String email, String password) {
 
-        if (TextUtils.isEmpty(email)) {
-            email_create.setError("Email cannot be empty");
-            email_create.requestFocus();
-        } else if (TextUtils.isEmpty(password)) {
-            password_create.setError("Password cannot be empty");
-            password_create.requestFocus();
-        } else {
-            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-                        Toast.makeText(New_User.this, "User registered successful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(New_User.this, Welcome_Page.class));
-                    }
-                    else {
-                        Toast.makeText(New_User.this, "Registration Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(New_User.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                //doesnt upload login information into realtime database, but registers account
+                if (task.isSuccessful()) {
+                    databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            databaseReference.child("users").child(email).child("password").setValue(password);
+
+                            Toast.makeText(New_User.this, "User registered successfully.", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    FirebaseUser user = auth.getCurrentUser();
+                    Toast.makeText(New_User.this, "Registering user successful", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(New_User.this, Welcome_Page.class);
+                    startActivity(intent);
+                }else {
+
+                    Toast.makeText(New_User.this, "Failed Registration: "+task.getException(), Toast.LENGTH_SHORT).show();
                 }
-            });
-        }
-    }
-**/
+            }
+        });
 
-}
+    }
+
 }
