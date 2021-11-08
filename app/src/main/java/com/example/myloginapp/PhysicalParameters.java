@@ -23,14 +23,13 @@ public class PhysicalParameters extends AppCompatActivity implements AdapterView
     private NumberPicker numberPicker1; //height
     private NumberPicker numberPicker2; //weight
 
-    private Spinner spinner_sex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_physical_parameters);
 
-        button = findViewById(R.id.Submit_PP); //register to welcome
+        button = findViewById(R.id.Next_PP); //register to welcome
         textView1 = (TextView) findViewById(R.id.Height);
         numberPicker1 = (NumberPicker) findViewById(R.id.Height_numberpicker);
 
@@ -41,7 +40,7 @@ public class PhysicalParameters extends AppCompatActivity implements AdapterView
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PhysicalParameters.this, Cto10k_Context.class);
+                Intent intent = new Intent(PhysicalParameters.this, PhysicalParameteres2.class);
                 startActivity(intent);
             }
         });
@@ -66,12 +65,6 @@ public class PhysicalParameters extends AppCompatActivity implements AdapterView
                 textView2.setText("Weight (lbs): " + newValue);
             }
         });
-
-        spinner_sex = findViewById(R.id.spinner_sex);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Sex, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_sex.setAdapter(adapter);
-        spinner_sex.setOnItemSelectedListener(this);
 
     }
 
