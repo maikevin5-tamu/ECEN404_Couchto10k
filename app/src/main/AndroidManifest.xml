@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyLoginApp">
         <activity
+            android:name=".PhysicalParameters3"
+            android:exported="true" />
+        <activity
             android:name=".PhysicalParameteres2"
             android:exported="true" />
         <activity

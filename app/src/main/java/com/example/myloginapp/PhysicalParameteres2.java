@@ -25,7 +25,7 @@ public class PhysicalParameteres2 extends AppCompatActivity implements AdapterVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_physical_parameteres2);
 
-        button = findViewById(R.id.Submit_PP); //register to welcome
+        button = findViewById(R.id.Submit_PP); //PP2 to PP3
         textView1 = (TextView) findViewById(R.id.Age);
         numberPicker1 = (NumberPicker) findViewById(R.id.Age_numberpicker);
 
@@ -36,7 +36,7 @@ public class PhysicalParameteres2 extends AppCompatActivity implements AdapterVi
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PhysicalParameteres2.this, Cto10k_Context.class);
+                Intent intent = new Intent(PhysicalParameteres2.this, PhysicalParameters3.class);
                 startActivity(intent);
             }
         });

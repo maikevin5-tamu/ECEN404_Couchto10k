@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PhysicalParameters">
+    tools:context=".PhysicalParameters3">
 
     <TextView
-        android:id="@+id/PhysicalParameters"
+        android:id="@+id/PhysicalParameters3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -21,64 +21,37 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/PhysicalParameters_context"
+        android:id="@+id/PhysicalParameters3_context"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/PhysicalParameters"
+        android:layout_below="@+id/PhysicalParameters3"
         android:layout_marginStart="50dp"
         android:layout_marginTop="-45dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="50dp"
         android:gravity="center"
-        android:text="Please enter the following information as accurately as possible."
+        android:text="Please select any medical conditions you possess"
         android:textColor="@color/black"
         android:textSize="15dp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/Age"
+    <ListView
+        android:id="@+id/listView_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/PhysicalParameters_context"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:textSize="24dp"
-        android:textColor="@color/black"
-        android:hint="Age"
-        android:gravity="center" />
-
-    <NumberPicker
-        android:id="@+id/Age_numberpicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_below="@id/Age"
-        android:layout_centerInParent="true"  />
-
-
-    <Spinner
-        android:id="@+id/spinner_sex"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/Age_numberpicker"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="center"
-        android:layout_marginTop="50dp" />
-
+        android:layout_below="@+id/PhysicalParameters3"
+        android:choiceMode="multipleChoice"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/Submit_PP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner_sex"
+        android:layout_below="@+id/listView_data"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="130dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:text="Next" />
-
+        android:text="Submit" />
 
 </RelativeLayout>
