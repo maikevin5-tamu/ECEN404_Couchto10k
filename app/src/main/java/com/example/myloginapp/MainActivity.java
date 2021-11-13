@@ -43,7 +43,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String txt_email = email.getText().toString();
                 String txt_password = password.getText().toString();
-                loginUser(txt_email, txt_password);
+                if (txt_email.isEmpty() || txt_password.isEmpty() ) {
+                    Toast.makeText(MainActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    loginUser(txt_email, txt_password);
+                }
             }
         });
 
@@ -70,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(MainActivity.this, "Login Failed: "+task.getException(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Login Failed: " + task.getException(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MostRecentRun">
+
+    <TextView
+        android:id="@+id/MRR_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text="Metrics for Most Recent Run"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/BPM_Run"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MRR_title"
+        android:hint="Average Heart BPM during Run"
+        android:padding="20dp"
+        android:drawableLeft="@drawable/ic_baseline_directions_run_24"
+        android:drawablePadding="20dp"
+        tools:ignore="MissingConstraints" />
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/BPM_Walk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/BPM_Run"
+        android:hint="Average Heart BPM during Run"
+        android:padding="20dp"
+        android:drawableLeft="@drawable/ic_baseline_directions_walk_24"
+        android:drawablePadding="20dp"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Distance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/BPM_Walk"
+        android:hint="Distance Travelled"
+        android:padding="20dp"
+        android:drawableLeft="@drawable/ic_baseline_add_road_24"
+        android:drawablePadding="20dp"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/BrPM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Distance"
+        android:hint="Breaths per Minute"
+        android:padding="20dp"
+        android:drawableLeft="@drawable/ic_baseline_air_24"
+        android:drawablePadding="20dp"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Calories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/BrPM"
+        android:hint="Calories Burned"
+        android:padding="20dp"
+        android:drawableLeft="@drawable/ic_baseline_no_food_24"
+        android:drawablePadding="20dp"
+        />
+
+
+    <Button
+        android:id="@+id/fetchData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Calories"
+        android:layout_margin="50dp"
+        android:text="Fetch Data"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigator"
+        app:itemBackground="@color/purple_500"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/menu"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
