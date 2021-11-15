@@ -3,6 +3,7 @@ package com.example.myloginapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,9 +11,20 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SelectWeek extends AppCompatActivity {
 
@@ -20,10 +32,8 @@ public class SelectWeek extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView;
 
     private Button goto_week_btn;
-    TextView program_details_textView;
 
     BottomNavigationView bottomNavigationView;
-    TextView title;
 
 
     @Override
@@ -31,9 +41,17 @@ public class SelectWeek extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_week);
 
+
         textInputLayout = findViewById(R.id.WeekSelection_DropMenu);
         autoCompleteTextView = findViewById(R.id.week_dropitems);
-        program_details_textView = findViewById(R.id.ProgramDetails);
+        TextView program_details1_textView = findViewById(R.id.ProgramDetails1);
+        TextView program_details2_textView = findViewById(R.id.ProgramDetails2);
+        TextView program_details3_textView = findViewById(R.id.ProgramDetails3);
+
+        bottomNavigationView = findViewById(R.id.bottom_navigator);
+        bottomNavigationView.setSelectedItemId(R.id.Program_dash);
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         String [] items = {"Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8", "Week 9", "Week 10", "Week 11", "Week 12"};
         ArrayAdapter<String> itemAdapter=new ArrayAdapter<>(SelectWeek.this, R.layout.items_list, items);
@@ -41,71 +59,165 @@ public class SelectWeek extends AppCompatActivity {
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                program_details_textView.setText((String)parent.getItemAtPosition(position));
-                if (position==0) {
-                    Intent intent = new Intent(SelectWeek.this, Program_Week1.class);
-                    startActivity(intent);
-                }
-                else if (position==1){
-                    Intent intent = new Intent(SelectWeek.this, Program_Week2.class);
-                    startActivity(intent);
-                }
-                else if (position==2){
-                    Intent intent = new Intent(SelectWeek.this, Program_Week3.class);
-                    startActivity(intent);
-                }
-                else if (position==3){
-                    Intent intent = new Intent(SelectWeek.this, Program_Week4.class);
-                    startActivity(intent);
-                }
-                else if (position==4){
-                    Intent intent = new Intent(SelectWeek.this, Program_Week5.class);
-                    startActivity(intent);
+                //resets text and text color
+                program_details1_textView.setText("");
+                program_details2_textView.setText("");
+                program_details3_textView.setText("");
+                program_details1_textView.setTextColor(Color.parseColor("#000000"));
+                program_details2_textView.setTextColor(Color.parseColor("#000000"));
+                program_details3_textView.setTextColor(Color.parseColor("#000000"));
+
+                String url = "https://api.npoint.io/b1c135e19ff0a4ca5205";
+                if (position == 0) {
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonWeek = response.getJSONArray("1");
+                                for (int i = 0; i < jsonWeek.length(); i++) {
+                                    JSONObject jsonObject1 = jsonWeek.getJSONObject(i);
+                                    JSONArray jsonArray1 = jsonObject1.getJSONArray("Day 1");
+                                    JSONArray jsonArray2 = jsonObject1.getJSONArray("Day 2");
+                                    JSONArray jsonArray3 = jsonObject1.getJSONArray("Day 3");
+
+
+                                    for (int j = 0; j < jsonArray1.length(); j++) {
+                                        JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
+
+                                        String Day1 = jsonObject2.getString("Day 1");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details1_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details1_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int k = 0; k < jsonArray2.length(); k++) {
+                                        JSONObject jsonObject2 = jsonArray2.getJSONObject(k);
+
+                                        String Day1 = jsonObject2.getString("Day 2");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details2_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details2_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int l = 0; l < jsonArray3.length(); l++) {
+                                        JSONObject jsonObject2 = jsonArray3.getJSONObject(l);
+
+                                        String Day1 = jsonObject2.getString("Day 3");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details3_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details3_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SelectWeek.this, error.getMessage(), Toast.LENGTH_SHORT);
+                        }
+
+                    });
+
+                    requestQueue.add(jsonObjectRequest);
+
+                    return;
+
                 }
 
-                else if (position==5){
-                    Intent intent = new Intent(SelectWeek.this, Program_Week6.class);
-                    startActivity(intent);
+                else if (position == 1) {
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonWeek = response.getJSONArray("2");
+                                for (int i = 0; i < jsonWeek.length(); i++) {
+                                    JSONObject jsonObject1 = jsonWeek.getJSONObject(i);
+                                    JSONArray jsonArray1 = jsonObject1.getJSONArray("Day 1");
+                                    JSONArray jsonArray2 = jsonObject1.getJSONArray("Day 2");
+                                    JSONArray jsonArray3 = jsonObject1.getJSONArray("Day 3");
+
+
+                                    for (int j = 0; j < jsonArray1.length(); j++) {
+                                        JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
+
+                                        String Day1 = jsonObject2.getString("Day 1");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details1_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details1_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int k = 0; k < jsonArray2.length(); k++) {
+                                        JSONObject jsonObject2 = jsonArray2.getJSONObject(k);
+
+                                        String Day1 = jsonObject2.getString("Day 2");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details2_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details2_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int l = 0; l < jsonArray3.length(); l++) {
+                                        JSONObject jsonObject2 = jsonArray3.getJSONObject(l);
+
+                                        String Day1 = jsonObject2.getString("Day 3");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details3_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details3_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SelectWeek.this, error.getMessage(), Toast.LENGTH_SHORT);
+                        }
+
+                    });
+
+                    requestQueue.add(jsonObjectRequest);
+
+                    return;
+
                 }
 
-                else if (position==6){
-                    Intent intent = new Intent(SelectWeek.this, Program_Week7.class);
-                    startActivity(intent);
-                }
-
-                else if (position==7){
-                    Intent intent = new Intent(SelectWeek.this, Program_Week8.class);
-                    startActivity(intent);
-                }
-
-                else if (position==8){
-                    Intent intent = new Intent(SelectWeek.this, Program_Week9.class);
-                    startActivity(intent);
-                }
-
-                else if (position==9){
-                    Intent intent = new Intent(SelectWeek.this, Program_Week10.class);
-                    startActivity(intent);
-                }
-
-                else if (position==10){
-                    Intent intent = new Intent(SelectWeek.this, Program_Week11.class);
-                    startActivity(intent);
-                }
-
-                else if (position==11){
-                    Intent intent = new Intent(SelectWeek.this, Program_Week12.class);
-                    startActivity(intent);
-                }
 
             }
+
         });
 
-        bottomNavigationView = findViewById(R.id.bottom_navigator);
-        bottomNavigationView.setSelectedItemId(R.id.Program_dash);
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case R.id.RunningMetrics_dash:
                     startActivity(new Intent(getApplicationContext(), LifetimeMetrics.class));
                     overridePendingTransition(0, 0);
@@ -122,6 +234,5 @@ public class SelectWeek extends AppCompatActivity {
 
             return true;
         });
-
     }
 }

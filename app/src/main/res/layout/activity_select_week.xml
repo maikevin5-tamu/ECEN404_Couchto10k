@@ -30,7 +30,7 @@
 
 
     <TextView
-        android:id="@+id/ProgramDetails"
+        android:id="@+id/ProgramDetails1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/WeekSelection_DropMenu"
@@ -39,7 +39,37 @@
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="50dp"
         android:gravity="center"
-        android:text="Select a Week to View Program Details"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="34dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ProgramDetails2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ProgramDetails1"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="34dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ProgramDetails3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ProgramDetails2"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="34dp"
         android:textStyle="bold" />
