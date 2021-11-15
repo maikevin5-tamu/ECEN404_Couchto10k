@@ -79,4 +79,14 @@
         app:menu="@menu/menu"
         android:layout_alignParentBottom="true" />
 
+    <Button
+        android:id="@+id/alertButton"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:drawableTop="@drawable/ic_baseline_add_alert_24"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/Settings_btn"
+        />
+
 </RelativeLayout>

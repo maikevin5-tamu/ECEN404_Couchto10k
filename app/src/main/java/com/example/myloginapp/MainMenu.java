@@ -1,14 +1,27 @@
 package com.example.myloginapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainMenu extends AppCompatActivity {
 
@@ -16,6 +29,9 @@ public class MainMenu extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     TextView title;
+
+    Button alertButton;
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +76,58 @@ public class MainMenu extends AppCompatActivity {
 
             return true;
 
+        });
+
+        alertButton = findViewById(R.id.alertButton);
+        builder = new AlertDialog.Builder(this);
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        alertButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://api.npoint.io/46f5ca0fab34ed2a17ec";
+                final String[] text = new String[1];
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("alert");
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                text[0] = jsonObject.getString("Text");
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        builder.setTitle("Updates")
+                                .setMessage(text[0])
+                                .setCancelable(true)
+                                .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.cancel();
+                                    }
+                                })
+                                .show();
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainMenu.this, error.getMessage(), Toast.LENGTH_SHORT);
+                    }
+                });
+
+                requestQueue.add(jsonObjectRequest);
+
+            }
         });
     }
 }

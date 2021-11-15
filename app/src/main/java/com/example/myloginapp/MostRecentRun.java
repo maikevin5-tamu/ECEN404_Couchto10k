@@ -44,7 +44,7 @@ public class MostRecentRun extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "https://api.npoint.io/375ebfc654d15bd5d7f8";
+                String url = "https://api.npoint.io/3655039531492f7a283d";
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -54,14 +54,14 @@ public class MostRecentRun extends AppCompatActivity {
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                int BPMRun = jsonObject.getInt("Average Heart BPM during Run");
-                                int BPMWalk = jsonObject.getInt("Average Heart BPM during Walk");
-                                int Distance = jsonObject.getInt("Distance Travelled");
-                                int BrPM = jsonObject.getInt("Breaths per minute");
-                                int Calories = jsonObject.getInt("Calories Burned");
+                                int BPMRun = jsonObject.getInt("BPM Run");
+                                int BPMWalk = jsonObject.getInt("BPM Walk");
+                                int Distance = jsonObject.getInt("Distance");
+                                int BrPM = jsonObject.getInt("BrPM");
+                                int Calories = jsonObject.getInt("Calories");
 
-                                BPMRun_TextInput.append(String.valueOf(BPMRun) + " Average BPM during Run");
-                                BPMWalk_TextInput.append(String.valueOf(BPMWalk) + " Average BPM during Run");
+                                BPMRun_TextInput.append(String.valueOf(BPMRun) + " BPM during Run (average)");
+                                BPMWalk_TextInput.append(String.valueOf(BPMWalk) + " BPM during Walk (average)");
                                 Distance_TextInput.append(String.valueOf(Distance) + " miles");
                                 BrPM_TextInput.append(String.valueOf(BrPM) + " Breaths per Minute");
                                 Calories_TextInput.append(String.valueOf(Calories) + " Calories Burned");
@@ -83,26 +83,29 @@ public class MostRecentRun extends AppCompatActivity {
 
                 requestQueue.add(jsonObjectRequest);
 
-                bottomNavigationView = findViewById(R.id.bottom_navigator);
-                bottomNavigationView.setSelectedItemId(R.id.Home_dash);
+                }
+            });
 
-                bottomNavigationView.setOnItemSelectedListener(item -> {
-                    switch (item.getItemId()) {
-                        case R.id.RunningMetrics_dash:
-                            return true;
-                        case R.id.Home_dash:
-                            startActivity(new Intent(getApplicationContext(), MainMenu.class));
-                            overridePendingTransition(0, 0);
-                            return true;
-                        case R.id.Program_dash:
-                            startActivity(new Intent(getApplicationContext(), MainProgramModule.class));
-                            overridePendingTransition(0, 0);
-                            return true;
-                    }
+        bottomNavigationView = findViewById(R.id.bottom_navigator);
+        bottomNavigationView.setSelectedItemId(R.id.RunningMetrics_dash);
 
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.RunningMetrics_dash:
+                    startActivity(new Intent(getApplicationContext(), LifetimeMetrics.class));
+                    overridePendingTransition(0, 0);
                     return true;
-                });
+                case R.id.Home_dash:
+                    startActivity(new Intent(getApplicationContext(), MainMenu.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.Program_dash:
+                    startActivity(new Intent(getApplicationContext(), MainProgramModule.class));
+                    overridePendingTransition(0, 0);
+                    return true;
             }
+
+            return true;
         });
     }
 }
