@@ -65,7 +65,6 @@ public class SelectWeek extends AppCompatActivity {
                 program_details3_textView.setText("");
                 program_details1_textView.setTextColor(Color.parseColor("#000000"));
                 program_details2_textView.setTextColor(Color.parseColor("#000000"));
-                program_details3_textView.setTextColor(Color.parseColor("#000000"));
 
                 String url = "https://api.npoint.io/b1c135e19ff0a4ca5205";
                 if (position == 0) {
@@ -145,6 +144,716 @@ public class SelectWeek extends AppCompatActivity {
                         public void onResponse(JSONObject response) {
                             try {
                                 JSONArray jsonWeek = response.getJSONArray("2");
+                                for (int i = 0; i < jsonWeek.length(); i++) {
+                                    JSONObject jsonObject1 = jsonWeek.getJSONObject(i);
+                                    JSONArray jsonArray1 = jsonObject1.getJSONArray("Day 1");
+                                    JSONArray jsonArray2 = jsonObject1.getJSONArray("Day 2");
+                                    JSONArray jsonArray3 = jsonObject1.getJSONArray("Day 3");
+
+
+                                    for (int j = 0; j < jsonArray1.length(); j++) {
+                                        JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
+
+                                        String Day1 = jsonObject2.getString("Day 1");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details1_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details1_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int k = 0; k < jsonArray2.length(); k++) {
+                                        JSONObject jsonObject2 = jsonArray2.getJSONObject(k);
+
+                                        String Day1 = jsonObject2.getString("Day 2");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details2_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details2_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int l = 0; l < jsonArray3.length(); l++) {
+                                        JSONObject jsonObject2 = jsonArray3.getJSONObject(l);
+
+                                        String Day1 = jsonObject2.getString("Day 3");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details3_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details3_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SelectWeek.this, error.getMessage(), Toast.LENGTH_SHORT);
+                        }
+
+                    });
+
+                    requestQueue.add(jsonObjectRequest);
+
+                    return;
+
+                }
+
+                else if (position == 2) {
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonWeek = response.getJSONArray("3");
+                                for (int i = 0; i < jsonWeek.length(); i++) {
+                                    JSONObject jsonObject1 = jsonWeek.getJSONObject(i);
+                                    JSONArray jsonArray1 = jsonObject1.getJSONArray("Day 1");
+                                    JSONArray jsonArray2 = jsonObject1.getJSONArray("Day 2");
+                                    JSONArray jsonArray3 = jsonObject1.getJSONArray("Day 3");
+
+
+                                    for (int j = 0; j < jsonArray1.length(); j++) {
+                                        JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
+
+                                        String Day1 = jsonObject2.getString("Day 1");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details1_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details1_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int k = 0; k < jsonArray2.length(); k++) {
+                                        JSONObject jsonObject2 = jsonArray2.getJSONObject(k);
+
+                                        String Day1 = jsonObject2.getString("Day 2");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details2_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details2_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int l = 0; l < jsonArray3.length(); l++) {
+                                        JSONObject jsonObject2 = jsonArray3.getJSONObject(l);
+
+                                        String Day1 = jsonObject2.getString("Day 3");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details3_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details3_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SelectWeek.this, error.getMessage(), Toast.LENGTH_SHORT);
+                        }
+
+                    });
+
+                    requestQueue.add(jsonObjectRequest);
+
+                    return;
+
+                }
+
+                else if (position == 3) {
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonWeek = response.getJSONArray("4");
+                                for (int i = 0; i < jsonWeek.length(); i++) {
+                                    JSONObject jsonObject1 = jsonWeek.getJSONObject(i);
+                                    JSONArray jsonArray1 = jsonObject1.getJSONArray("Day 1");
+                                    JSONArray jsonArray2 = jsonObject1.getJSONArray("Day 2");
+                                    JSONArray jsonArray3 = jsonObject1.getJSONArray("Day 3");
+
+
+                                    for (int j = 0; j < jsonArray1.length(); j++) {
+                                        JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
+
+                                        String Day1 = jsonObject2.getString("Day 1");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details1_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details1_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int k = 0; k < jsonArray2.length(); k++) {
+                                        JSONObject jsonObject2 = jsonArray2.getJSONObject(k);
+
+                                        String Day1 = jsonObject2.getString("Day 2");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details2_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details2_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int l = 0; l < jsonArray3.length(); l++) {
+                                        JSONObject jsonObject2 = jsonArray3.getJSONObject(l);
+
+                                        String Day1 = jsonObject2.getString("Day 3");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details3_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details3_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SelectWeek.this, error.getMessage(), Toast.LENGTH_SHORT);
+                        }
+
+                    });
+
+                    requestQueue.add(jsonObjectRequest);
+
+                    return;
+
+                }
+
+                else if (position == 4) {
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonWeek = response.getJSONArray("5");
+                                for (int i = 0; i < jsonWeek.length(); i++) {
+                                    JSONObject jsonObject1 = jsonWeek.getJSONObject(i);
+                                    JSONArray jsonArray1 = jsonObject1.getJSONArray("Day 1");
+                                    JSONArray jsonArray2 = jsonObject1.getJSONArray("Day 2");
+                                    JSONArray jsonArray3 = jsonObject1.getJSONArray("Day 3");
+
+
+                                    for (int j = 0; j < jsonArray1.length(); j++) {
+                                        JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
+
+                                        String Day1 = jsonObject2.getString("Day 1");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details1_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details1_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int k = 0; k < jsonArray2.length(); k++) {
+                                        JSONObject jsonObject2 = jsonArray2.getJSONObject(k);
+
+                                        String Day1 = jsonObject2.getString("Day 2");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details2_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details2_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int l = 0; l < jsonArray3.length(); l++) {
+                                        JSONObject jsonObject2 = jsonArray3.getJSONObject(l);
+
+                                        String Day1 = jsonObject2.getString("Day 3");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details3_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details3_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SelectWeek.this, error.getMessage(), Toast.LENGTH_SHORT);
+                        }
+
+                    });
+
+                    requestQueue.add(jsonObjectRequest);
+
+                    return;
+
+                }
+
+                else if (position == 5) {
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonWeek = response.getJSONArray("6");
+                                for (int i = 0; i < jsonWeek.length(); i++) {
+                                    JSONObject jsonObject1 = jsonWeek.getJSONObject(i);
+                                    JSONArray jsonArray1 = jsonObject1.getJSONArray("Day 1");
+                                    JSONArray jsonArray2 = jsonObject1.getJSONArray("Day 2");
+                                    JSONArray jsonArray3 = jsonObject1.getJSONArray("Day 3");
+
+
+                                    for (int j = 0; j < jsonArray1.length(); j++) {
+                                        JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
+
+                                        String Day1 = jsonObject2.getString("Day 1");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details1_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details1_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int k = 0; k < jsonArray2.length(); k++) {
+                                        JSONObject jsonObject2 = jsonArray2.getJSONObject(k);
+
+                                        String Day1 = jsonObject2.getString("Day 2");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details2_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details2_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int l = 0; l < jsonArray3.length(); l++) {
+                                        JSONObject jsonObject2 = jsonArray3.getJSONObject(l);
+
+                                        String Day1 = jsonObject2.getString("Day 3");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details3_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details3_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SelectWeek.this, error.getMessage(), Toast.LENGTH_SHORT);
+                        }
+
+                    });
+
+                    requestQueue.add(jsonObjectRequest);
+
+                    return;
+
+                }
+
+                else if (position == 6) {
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonWeek = response.getJSONArray("7");
+                                for (int i = 0; i < jsonWeek.length(); i++) {
+                                    JSONObject jsonObject1 = jsonWeek.getJSONObject(i);
+                                    JSONArray jsonArray1 = jsonObject1.getJSONArray("Day 1");
+                                    JSONArray jsonArray2 = jsonObject1.getJSONArray("Day 2");
+                                    JSONArray jsonArray3 = jsonObject1.getJSONArray("Day 3");
+
+
+                                    for (int j = 0; j < jsonArray1.length(); j++) {
+                                        JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
+
+                                        String Day1 = jsonObject2.getString("Day 1");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details1_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details1_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int k = 0; k < jsonArray2.length(); k++) {
+                                        JSONObject jsonObject2 = jsonArray2.getJSONObject(k);
+
+                                        String Day1 = jsonObject2.getString("Day 2");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details2_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details2_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int l = 0; l < jsonArray3.length(); l++) {
+                                        JSONObject jsonObject2 = jsonArray3.getJSONObject(l);
+
+                                        String Day1 = jsonObject2.getString("Day 3");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details3_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details3_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SelectWeek.this, error.getMessage(), Toast.LENGTH_SHORT);
+                        }
+
+                    });
+
+                    requestQueue.add(jsonObjectRequest);
+
+                    return;
+
+                }
+
+                else if (position == 7) {
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonWeek = response.getJSONArray("8");
+                                for (int i = 0; i < jsonWeek.length(); i++) {
+                                    JSONObject jsonObject1 = jsonWeek.getJSONObject(i);
+                                    JSONArray jsonArray1 = jsonObject1.getJSONArray("Day 1");
+                                    JSONArray jsonArray2 = jsonObject1.getJSONArray("Day 2");
+                                    JSONArray jsonArray3 = jsonObject1.getJSONArray("Day 3");
+
+
+                                    for (int j = 0; j < jsonArray1.length(); j++) {
+                                        JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
+
+                                        String Day1 = jsonObject2.getString("Day 1");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details1_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details1_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int k = 0; k < jsonArray2.length(); k++) {
+                                        JSONObject jsonObject2 = jsonArray2.getJSONObject(k);
+
+                                        String Day1 = jsonObject2.getString("Day 2");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details2_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details2_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int l = 0; l < jsonArray3.length(); l++) {
+                                        JSONObject jsonObject2 = jsonArray3.getJSONObject(l);
+
+                                        String Day1 = jsonObject2.getString("Day 3");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details3_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details3_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SelectWeek.this, error.getMessage(), Toast.LENGTH_SHORT);
+                        }
+
+                    });
+
+                    requestQueue.add(jsonObjectRequest);
+
+                    return;
+
+                }
+
+                else if (position == 8) {
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonWeek = response.getJSONArray("9");
+                                for (int i = 0; i < jsonWeek.length(); i++) {
+                                    JSONObject jsonObject1 = jsonWeek.getJSONObject(i);
+                                    JSONArray jsonArray1 = jsonObject1.getJSONArray("Day 1");
+                                    JSONArray jsonArray2 = jsonObject1.getJSONArray("Day 2");
+                                    JSONArray jsonArray3 = jsonObject1.getJSONArray("Day 3");
+
+
+                                    for (int j = 0; j < jsonArray1.length(); j++) {
+                                        JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
+
+                                        String Day1 = jsonObject2.getString("Day 1");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details1_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details1_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int k = 0; k < jsonArray2.length(); k++) {
+                                        JSONObject jsonObject2 = jsonArray2.getJSONObject(k);
+
+                                        String Day1 = jsonObject2.getString("Day 2");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details2_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details2_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int l = 0; l < jsonArray3.length(); l++) {
+                                        JSONObject jsonObject2 = jsonArray3.getJSONObject(l);
+
+                                        String Day1 = jsonObject2.getString("Day 3");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details3_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details3_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SelectWeek.this, error.getMessage(), Toast.LENGTH_SHORT);
+                        }
+
+                    });
+
+                    requestQueue.add(jsonObjectRequest);
+
+                    return;
+
+                }
+
+                else if (position == 9) {
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonWeek = response.getJSONArray("10");
+                                for (int i = 0; i < jsonWeek.length(); i++) {
+                                    JSONObject jsonObject1 = jsonWeek.getJSONObject(i);
+                                    JSONArray jsonArray1 = jsonObject1.getJSONArray("Day 1");
+                                    JSONArray jsonArray2 = jsonObject1.getJSONArray("Day 2");
+                                    JSONArray jsonArray3 = jsonObject1.getJSONArray("Day 3");
+
+
+                                    for (int j = 0; j < jsonArray1.length(); j++) {
+                                        JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
+
+                                        String Day1 = jsonObject2.getString("Day 1");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details1_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details1_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int k = 0; k < jsonArray2.length(); k++) {
+                                        JSONObject jsonObject2 = jsonArray2.getJSONObject(k);
+
+                                        String Day1 = jsonObject2.getString("Day 2");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details2_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details2_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int l = 0; l < jsonArray3.length(); l++) {
+                                        JSONObject jsonObject2 = jsonArray3.getJSONObject(l);
+
+                                        String Day1 = jsonObject2.getString("Day 3");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details3_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details3_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SelectWeek.this, error.getMessage(), Toast.LENGTH_SHORT);
+                        }
+
+                    });
+
+                    requestQueue.add(jsonObjectRequest);
+
+                    return;
+
+                }
+
+                else if (position == 10) {
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonWeek = response.getJSONArray("11");
+                                for (int i = 0; i < jsonWeek.length(); i++) {
+                                    JSONObject jsonObject1 = jsonWeek.getJSONObject(i);
+                                    JSONArray jsonArray1 = jsonObject1.getJSONArray("Day 1");
+                                    JSONArray jsonArray2 = jsonObject1.getJSONArray("Day 2");
+                                    JSONArray jsonArray3 = jsonObject1.getJSONArray("Day 3");
+
+
+                                    for (int j = 0; j < jsonArray1.length(); j++) {
+                                        JSONObject jsonObject2 = jsonArray1.getJSONObject(j);
+
+                                        String Day1 = jsonObject2.getString("Day 1");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details1_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details1_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int k = 0; k < jsonArray2.length(); k++) {
+                                        JSONObject jsonObject2 = jsonArray2.getJSONObject(k);
+
+                                        String Day1 = jsonObject2.getString("Day 2");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details2_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details2_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+
+                                    for (int l = 0; l < jsonArray3.length(); l++) {
+                                        JSONObject jsonObject2 = jsonArray3.getJSONObject(l);
+
+                                        String Day1 = jsonObject2.getString("Day 3");
+                                        int complete = jsonObject2.getInt("Complete");
+
+                                        program_details3_textView.append(Day1);
+                                        if (complete == 1) {
+                                            program_details3_textView.setTextColor(Color.parseColor("#738b28"));
+                                        }
+
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SelectWeek.this, error.getMessage(), Toast.LENGTH_SHORT);
+                        }
+
+                    });
+
+                    requestQueue.add(jsonObjectRequest);
+
+                    return;
+
+                }
+
+                else if (position == 11) {
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonWeek = response.getJSONArray("12");
                                 for (int i = 0; i < jsonWeek.length(); i++) {
                                     JSONObject jsonObject1 = jsonWeek.getJSONObject(i);
                                     JSONArray jsonArray1 = jsonObject1.getJSONArray("Day 1");
