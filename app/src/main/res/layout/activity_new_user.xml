@@ -21,10 +21,24 @@
         android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/email_create"
+        android:id="@+id/userID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/createaccount"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:drawableLeft="@drawable/ic_baseline_123_24"
+        android:drawablePadding="20dp"
+        android:hint="Pick a User ID Number"
+        android:padding="20dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/email_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userID"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -57,6 +71,7 @@
         android:drawableLeft="@drawable/ic_baseline_info_24"
         android:drawablePadding="20dp"
         android:inputType="textPassword"/>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/Register"

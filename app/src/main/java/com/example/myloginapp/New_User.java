@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 public class New_User extends AppCompatActivity {
 
     private Button registerBtn;
+    private EditText userID;
     private EditText email;
     private EditText password;
     private EditText con_password;
@@ -41,6 +42,7 @@ public class New_User extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user);
 
+        userID = findViewById(R.id.userID);
         email = findViewById(R.id.email_create);
         password = findViewById(R.id.password_create);
         con_password = findViewById(R.id.password_confirm);
@@ -52,12 +54,13 @@ public class New_User extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String txt_userID = userID.getText().toString();
                 String txt_email = email.getText().toString();
                 String txt_password = password.getText().toString();
                 String txt_con_password = con_password.getText().toString();
 
                 //check empty fields
-                if (txt_email.isEmpty() || txt_password.isEmpty() ) {
+                if (txt_email.isEmpty() || txt_password.isEmpty() || txt_userID.isEmpty()) {
                     Toast.makeText(New_User.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                 }
 
@@ -65,25 +68,44 @@ public class New_User extends AppCompatActivity {
                 else if (!txt_password.equals(txt_con_password)){
                     Toast.makeText(New_User.this, "Passwords are not matching", Toast.LENGTH_SHORT).show();
                 }
+
                 else{
-                    registerUser(txt_email, txt_password);
+                    databaseReference.child("User ID").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.hasChild(txt_userID)) {
+                                Toast.makeText(New_User.this, "User ID is taken", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                registerUser(txt_email, txt_password, txt_userID);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
 
                 }
             }
         });
     }
 
-    private void registerUser(String email, String password) {
+    private void registerUser(String email, String password, String userID) {
 
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(New_User.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 //doesnt upload login information into realtime database, but registers account
                 if (task.isSuccessful()) {
-                    databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                    databaseReference.child("User ID").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            databaseReference.child("users").child(email).child("password").setValue(password);
+
+                            databaseReference.child("User ID").child(userID).child("email").setValue(email);
+                            databaseReference.child("User ID").child(userID).child("password").setValue(password);
 
                             Toast.makeText(New_User.this, "User registered successfully.", Toast.LENGTH_SHORT).show();
                             finish();
@@ -100,7 +122,7 @@ public class New_User extends AppCompatActivity {
                     startActivity(intent);
                 }else {
 
-                    Toast.makeText(New_User.this, "Failed Registration: "+task.getException(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(New_User.this, "Failed Registration: " + task.getException(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
