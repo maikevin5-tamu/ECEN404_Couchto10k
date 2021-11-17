@@ -26,42 +26,6 @@
             android:name=".PhysicalParameteres2"
             android:exported="true" />
         <activity
-            android:name=".Program_Week1"
-            android:exported="true" />
-        <activity
-            android:name=".Program_Week2"
-            android:exported="true" />
-        <activity
-            android:name=".Program_Week3"
-            android:exported="true" />
-        <activity
-            android:name=".Program_Week4"
-            android:exported="true" />
-        <activity
-            android:name=".Program_Week5"
-            android:exported="true" />
-        <activity
-            android:name=".Program_Week6"
-            android:exported="true" />
-        <activity
-            android:name=".Program_Week7"
-            android:exported="true" />
-        <activity
-            android:name=".Program_Week8"
-            android:exported="true" />
-        <activity
-            android:name=".Program_Week9"
-            android:exported="true" />
-        <activity
-            android:name=".Program_Week10"
-            android:exported="true" />
-        <activity
-            android:name=".Program_Week11"
-            android:exported="true" />
-        <activity
-            android:name=".Program_Week12"
-            android:exported="true" />
-        <activity
             android:name=".SelectWeek"
             android:exported="true" />
         <activity

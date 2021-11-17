@@ -65,6 +65,8 @@ public class SelectWeek extends AppCompatActivity {
                 program_details3_textView.setText("");
                 program_details1_textView.setTextColor(Color.parseColor("#000000"));
                 program_details2_textView.setTextColor(Color.parseColor("#000000"));
+                program_details3_textView.setTextColor(Color.parseColor("#000000"));
+
 
                 String url = "https://api.npoint.io/b1c135e19ff0a4ca5205";
                 if (position == 0) {
