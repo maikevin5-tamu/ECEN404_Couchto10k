@@ -1,5 +1,6 @@
 package com.example.myloginapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,20 +9,34 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PhysicalParameters extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+public class PhysicalParameters extends New_User implements AdapterView.OnItemSelectedListener {
 
     private Button button;
 
-    private TextView textView1; //height
-    private TextView textView2; //weight
+    private EditText height;
+    private EditText weight;
+    private EditText age;
+    private Spinner spinner_sex;
+    private EditText userID;
 
-    private NumberPicker numberPicker1; //height
-    private NumberPicker numberPicker2; //weight
+
+    private FirebaseAuth auth;
+
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://couch-to-10k-testing-default-rtdb.firebaseio.com/");
 
 
     @Override
@@ -30,42 +45,54 @@ public class PhysicalParameters extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_physical_parameters);
 
         button = findViewById(R.id.Next_PP); //register to welcome
-        textView1 = (TextView) findViewById(R.id.Height);
-        numberPicker1 = (NumberPicker) findViewById(R.id.Height_numberpicker);
+        height = findViewById(R.id.Height);
+        weight = findViewById(R.id.Weight);
+        age = findViewById(R.id.Age);
 
-        numberPicker1.setMaxValue(80);
-        numberPicker1.setMinValue(0);
-        numberPicker1.setValue(60);
+        userID = findViewById(R.id.userID);
+
+        spinner_sex = findViewById(R.id.spinner_sex);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Sex, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_sex.setAdapter(adapter);
+        spinner_sex.setOnItemSelectedListener(this);
+
+        auth = FirebaseAuth.getInstance();
+
+        FirebaseUser firebaseUser = auth.getCurrentUser();
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PhysicalParameters.this, PhysicalParameteres2.class);
-                startActivity(intent);
+                String txt_height = height.getText().toString();
+                String txt_weight = weight.getText().toString();
+                String txt_age = age.getText().toString();
+                String txt_userID = userID.getText().toString();
+
+
+                if (txt_height.isEmpty() || txt_weight.isEmpty() || txt_age.isEmpty()) {
+                    Toast.makeText(PhysicalParameters.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    databaseReference.child("User ID").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            databaseReference.child("User ID").child(txt_userID).child("height").setValue(txt_height);
+                            databaseReference.child("User ID").child(txt_userID).child("weight").setValue(txt_weight);
+                            databaseReference.child("User ID").child(txt_userID).child("age").setValue(txt_age);
+                            Intent intent = new Intent(PhysicalParameters.this, PhysicalParameteres2.class);
+                            startActivity(intent);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
             }
         });
-
-        numberPicker1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker numberPicker1, int oldValue, int newValue) {
-                textView1.setText("Height (in.): " + newValue);
-            }
-        });
-
-        textView2 = (TextView) findViewById(R.id.Weight);
-        numberPicker2 = (NumberPicker) findViewById(R.id.Weight_numberpicker);
-
-        numberPicker2.setMaxValue(300);
-        numberPicker2.setMinValue(0);
-        numberPicker2.setValue(160);
-
-        numberPicker2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker numberPicker2, int oldValue, int newValue) {
-                textView2.setText("Weight (lbs): " + newValue);
-            }
-        });
-
     }
 
     @Override
@@ -77,4 +104,5 @@ public class PhysicalParameters extends AppCompatActivity implements AdapterView
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
 }

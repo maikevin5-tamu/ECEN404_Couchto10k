@@ -35,56 +35,77 @@
         android:textSize="15dp"
         android:textStyle="bold" />
 
-    <TextView
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/Height"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/PhysicalParameters_context"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="-30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:textSize="24dp"
-        android:textColor="@color/black"
-        android:hint="Height (in.)"
-        android:gravity="center" />
+        android:drawableLeft="@drawable/ic_baseline_123_24"
+        android:drawablePadding="20dp"
+        android:hint="Enter your Height in Inches"
+        android:padding="20dp" />
 
-    <NumberPicker
-        android:id="@+id/Height_numberpicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-20dp"
-        android:layout_below="@id/Height"
-        android:layout_centerInParent="true"  />
 
-    <TextView
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/Weight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Height_numberpicker"
+        android:layout_below="@+id/Height"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="-10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:textSize="24dp"
-        android:textColor="@color/black"
-        android:hint="Weight (lbs.)"
-        android:gravity="center" />
+        android:drawableLeft="@drawable/ic_baseline_123_24"
+        android:drawablePadding="20dp"
+        android:hint="Enter your Weight in Pounds"
+        android:padding="20dp" />
 
-    <NumberPicker
-        android:id="@+id/Weight_numberpicker"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Age"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-20dp"
-        android:layout_below="@id/Weight"
-        android:layout_centerInParent="true"  />
+        android:layout_below="@+id/Weight"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:drawableLeft="@drawable/ic_baseline_123_24"
+        android:drawablePadding="20dp"
+        android:hint="Enter your Age"
+        android:padding="20dp" />
 
+    <Spinner
+        android:id="@+id/spinner_sex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Age"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_marginTop="50dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/userID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner_sex"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:drawableLeft="@drawable/ic_baseline_123_24"
+        android:drawablePadding="20dp"
+        android:hint="Pick a User ID Number"
+        android:padding="20dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/Next_PP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Weight_numberpicker"
+        android:layout_below="@+id/spinner_sex"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
