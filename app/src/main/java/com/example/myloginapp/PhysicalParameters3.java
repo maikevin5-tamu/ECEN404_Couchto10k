@@ -5,13 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PhysicalParameters3 extends AppCompatActivity{
 
@@ -19,8 +30,9 @@ public class PhysicalParameters3 extends AppCompatActivity{
 
     ListView listViewData;
     ArrayAdapter<String> adapter;
-    String [] med_conditions = {"Asthma", "Heart Disease", "Diabetes"};
+    String [] med_conditions = {"Respiratory Disease", "Cardiovascular Disease", "Pregnancy"};
 
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://couch-to-10k-testing-default-rtdb.firebaseio.com/");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +48,28 @@ public class PhysicalParameters3 extends AppCompatActivity{
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                Toast.makeText(PhysicalParameters3.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+                String txt_UID = currentFirebaseUser.getUid();
+
+                SparseBooleanArray checked = listViewData.getCheckedItemPositions();
+                for (int j = 0; j < listViewData.getCount(); j++) {
+                    if (checked.get(j)) {
+                        String item = med_conditions[j];
+                        if (j == 0) {
+                            databaseReference.child("User ID").child(txt_UID).child("medical conditions").child("Respiratory Disease").setValue(1);
+                        }
+                        else if (j == 1) {
+                            databaseReference.child("User ID").child(txt_UID).child("medical conditions").child("Cardiovascular Disease").setValue(1);
+                        }
+                        else if (j == 2) {
+                            databaseReference.child("User ID").child(txt_UID).child("medical conditions").child("Pregnancy").setValue(1);
+                        }
+                    }
+                }
+
+
                 Intent intent = new Intent(PhysicalParameters3.this, Cto10k_Context.class);
                 startActivity(intent);
             }

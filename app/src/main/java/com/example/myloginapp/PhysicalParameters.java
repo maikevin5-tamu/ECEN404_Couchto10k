@@ -31,7 +31,7 @@ public class PhysicalParameters extends New_User implements AdapterView.OnItemSe
     private EditText weight;
     private EditText age;
     private Spinner spinner_sex;
-    private EditText userID;
+
 
 
     private FirebaseAuth auth;
@@ -49,7 +49,6 @@ public class PhysicalParameters extends New_User implements AdapterView.OnItemSe
         weight = findViewById(R.id.Weight);
         age = findViewById(R.id.Age);
 
-        userID = findViewById(R.id.userID);
 
         spinner_sex = findViewById(R.id.spinner_sex);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Sex, android.R.layout.simple_spinner_item);
@@ -68,8 +67,11 @@ public class PhysicalParameters extends New_User implements AdapterView.OnItemSe
                 String txt_height = height.getText().toString();
                 String txt_weight = weight.getText().toString();
                 String txt_age = age.getText().toString();
-                String txt_userID = userID.getText().toString();
+                String txt_sex = spinner_sex.getSelectedItem().toString();
 
+                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                Toast.makeText(PhysicalParameters.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+                String txt_UID = currentFirebaseUser.getUid();
 
                 if (txt_height.isEmpty() || txt_weight.isEmpty() || txt_age.isEmpty()) {
                     Toast.makeText(PhysicalParameters.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
@@ -78,10 +80,11 @@ public class PhysicalParameters extends New_User implements AdapterView.OnItemSe
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            databaseReference.child("User ID").child(txt_userID).child("height").setValue(txt_height);
-                            databaseReference.child("User ID").child(txt_userID).child("weight").setValue(txt_weight);
-                            databaseReference.child("User ID").child(txt_userID).child("age").setValue(txt_age);
-                            Intent intent = new Intent(PhysicalParameters.this, PhysicalParameteres2.class);
+                            databaseReference.child("User ID").child(txt_UID).child("height").setValue(txt_height);
+                            databaseReference.child("User ID").child(txt_UID).child("weight").setValue(txt_weight);
+                            databaseReference.child("User ID").child(txt_UID).child("age").setValue(txt_age);
+                            databaseReference.child("User ID").child(txt_UID).child("sex").setValue(txt_sex);
+                            Intent intent = new Intent(PhysicalParameters.this, PhysicalParameters3.class);
                             startActivity(intent);
                         }
 

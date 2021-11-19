@@ -27,8 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 public class New_User extends AppCompatActivity {
 
     private Button registerBtn;
-    private Button userIDBtn;
-    EditText userID;
     private EditText email;
     private EditText password;
     private EditText con_password;
@@ -43,13 +41,11 @@ public class New_User extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user);
 
-        userID = findViewById(R.id.userID);
         email = findViewById(R.id.email_create);
         password = findViewById(R.id.password_create);
         con_password = findViewById(R.id.password_confirm);
 
         auth = FirebaseAuth.getInstance();
-
 
         registerBtn = findViewById(R.id.Register);
 
@@ -61,9 +57,9 @@ public class New_User extends AppCompatActivity {
                 String txt_password = password.getText().toString();
                 String txt_con_password = con_password.getText().toString();
 
-                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-                Toast.makeText(New_User.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
-                String txt_UID = currentFirebaseUser.getUid();
+                //FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                //Toast.makeText(New_User.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+                //String txt_UID = currentFirebaseUser.getUid();
 
                 //check empty fields
                 if (txt_email.isEmpty() || txt_password.isEmpty()) {
@@ -79,12 +75,8 @@ public class New_User extends AppCompatActivity {
                     databaseReference.child("User ID").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.hasChild(txt_UID)) {
-                                Toast.makeText(New_User.this, "User ID is taken", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                registerUser(txt_email, txt_password, txt_UID);
-                            }
+                            registerUser(txt_email, txt_password);
+
                         }
 
                         @Override
@@ -99,7 +91,7 @@ public class New_User extends AppCompatActivity {
         });
     }
 
-    private void registerUser(String email, String password, String UID) {
+    private void registerUser(String email, String password) {
 
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(New_User.this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -110,10 +102,16 @@ public class New_User extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            databaseReference.child("User ID").child(UID).child("email").setValue(email);
-                            databaseReference.child("User ID").child(UID).child("password").setValue(password);
+                            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                            Toast.makeText(New_User.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+                            String txt_UID = currentFirebaseUser.getUid();
+
+                            databaseReference.child("User ID").child(txt_UID).child("email").setValue(email);
+                            databaseReference.child("User ID").child(txt_UID).child("password").setValue(password);
 
                             Toast.makeText(New_User.this, "User registered successfully.", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(New_User.this, PhysicalParameters.class);
+                            startActivity(intent);
                             finish();
                         }
 
@@ -122,10 +120,7 @@ public class New_User extends AppCompatActivity {
 
                         }
                     });
-                    FirebaseUser user = auth.getCurrentUser();
                     Toast.makeText(New_User.this, "Registering user successful", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(New_User.this, Welcome_Page.class);
-                    startActivity(intent);
                 }else {
 
                     Toast.makeText(New_User.this, "Failed Registration: " + task.getException(), Toast.LENGTH_SHORT).show();
@@ -134,5 +129,4 @@ public class New_User extends AppCompatActivity {
         });
 
     }
-
 }
