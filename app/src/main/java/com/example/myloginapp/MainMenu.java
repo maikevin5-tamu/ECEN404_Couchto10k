@@ -117,6 +117,22 @@ public class MainMenu extends AppCompatActivity {
                                         dialogInterface.cancel();
                                     }
                                 })
+                                .setPositiveButton("Next", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface1, int i) {
+                                        builder.setTitle("Performance Analysis")
+                                                .setMessage("To help us analyze your performance, please rate your most recent run.")
+                                                .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface1, int i) {
+                                                        Intent intent = new Intent(MainMenu.this, RatingRun.class);
+                                                        startActivity(intent);
+                                                    }
+                                                });
+                                        builder.show();
+                                    }
+
+                                })
                                 .show();
 
                     }

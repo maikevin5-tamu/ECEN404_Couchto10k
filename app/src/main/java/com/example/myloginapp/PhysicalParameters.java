@@ -69,7 +69,7 @@ public class PhysicalParameters extends New_User implements AdapterView.OnItemSe
                 String txt_age = age.getText().toString();
                 String txt_sex = spinner_sex.getSelectedItem().toString();
 
-                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 Toast.makeText(PhysicalParameters.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
                 String txt_UID = currentFirebaseUser.getUid();
 

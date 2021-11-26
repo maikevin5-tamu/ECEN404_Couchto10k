@@ -6,5 +6,13 @@
         <item>Female</item>
     </string-array>
 
+    <string-array name="Rating">
+        <item>1 - Extremely Hard</item>
+        <item>2 - Moderately Hard</item>
+        <item>3 - Manageable</item>
+        <item>4 - Moderately Easy</item>
+        <item>5 - Extremely Easy</item>
+    </string-array>
+
 
 </resources>

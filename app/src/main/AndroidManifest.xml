@@ -14,6 +14,9 @@
         android:theme="@style/Theme.MyLoginApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".RatingRun"
+            android:exported="true" />
+        <activity
             android:name=".LifetimeMetricsSub"
             android:exported="true" />
         <activity
