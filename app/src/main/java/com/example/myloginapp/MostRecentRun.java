@@ -17,10 +17,15 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.net.URI;
 
 public class MostRecentRun extends AppCompatActivity {
 
@@ -45,6 +50,7 @@ public class MostRecentRun extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String url = "https://api.npoint.io/3655039531492f7a283d";
+
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

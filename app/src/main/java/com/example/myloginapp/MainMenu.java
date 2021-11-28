@@ -89,6 +89,7 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String url = "https://api.npoint.io/46f5ca0fab34ed2a17ec";
+
                 final String[] text = new String[1];
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
