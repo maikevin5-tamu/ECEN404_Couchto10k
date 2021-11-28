@@ -55,7 +55,7 @@ public class RatingRun extends AppCompatActivity implements AdapterView.OnItemSe
 
 
                 FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                Toast.makeText(RatingRun.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RatingRun.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
                 String txt_UID = currentFirebaseUser.getUid();
 
                 if (txt_rating.isEmpty() ){

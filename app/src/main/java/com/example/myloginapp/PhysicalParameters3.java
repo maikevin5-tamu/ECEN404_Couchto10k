@@ -50,7 +50,7 @@ public class PhysicalParameters3 extends AppCompatActivity{
             public void onClick(View view) {
 
                 FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-                Toast.makeText(PhysicalParameters3.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(PhysicalParameters3.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
                 String txt_UID = currentFirebaseUser.getUid();
 
                 SparseBooleanArray checked = listViewData.getCheckedItemPositions();
