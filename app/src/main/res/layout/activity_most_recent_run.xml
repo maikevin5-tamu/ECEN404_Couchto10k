@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/BPM_Run"
-        android:hint="Average Heart BPM during Run"
+        android:hint="Average Heart BPM during Walk"
         android:padding="20dp"
         android:drawableLeft="@drawable/ic_baseline_directions_walk_24"
         android:drawablePadding="20dp"
