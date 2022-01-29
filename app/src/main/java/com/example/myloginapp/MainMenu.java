@@ -1,10 +1,13 @@
 package com.example.myloginapp;
 
+import static com.google.android.gms.tasks.Tasks.await;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,13 +20,21 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.internal.StorageReferenceUri;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.io.IOException;
 
 public class MainMenu extends AppCompatActivity {
 
@@ -85,68 +96,137 @@ public class MainMenu extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
+
         alertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "https://api.npoint.io/46f5ca0fab34ed2a17ec";
 
-                final String[] text = new String[1];
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("alerts.json");
+                storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onSuccess(Uri uri) {
+                        String url = uri.toString();
 
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("alert");
+                        final String[] text = new String[1];
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
 
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                try {
+                                    JSONArray jsonArray = response.getJSONArray("alert");
 
-                                text[0] = jsonObject.getString("Text");
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                        text[0] = jsonObject.getString("Text");
+
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                builder.setTitle("Updates")
+                                        .setMessage(text[0])
+                                        .setCancelable(true)
+                                        .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                dialogInterface.cancel();
+                                            }
+                                        })
+                                        .setPositiveButton("Next", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface1, int i) {
+                                                builder.setTitle("Performance Analysis")
+                                                        .setMessage("To help us analyze your performance, please rate your most recent run.")
+                                                        .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialogInterface1, int i) {
+                                                                Intent intent = new Intent(MainMenu.this, RatingRun.class);
+                                                                startActivity(intent);
+                                                            }
+                                                        });
+                                                builder.show();
+                                            }
+
+                                        })
+                                        .show();
 
                             }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(MainMenu.this, error.getMessage(), Toast.LENGTH_SHORT);
+                            }
+                        });
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        builder.setTitle("Updates")
-                                .setMessage(text[0])
-                                .setCancelable(true)
-                                .setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        dialogInterface.cancel();
-                                    }
-                                })
-                                .setPositiveButton("Next", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface1, int i) {
-                                        builder.setTitle("Performance Analysis")
-                                                .setMessage("To help us analyze your performance, please rate your most recent run.")
-                                                .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface1, int i) {
-                                                        Intent intent = new Intent(MainMenu.this, RatingRun.class);
-                                                        startActivity(intent);
-                                                    }
-                                                });
-                                        builder.show();
-                                    }
-
-                                })
-                                .show();
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainMenu.this, error.getMessage(), Toast.LENGTH_SHORT);
+                        requestQueue.add(jsonObjectRequest);
                     }
                 });
 
-                requestQueue.add(jsonObjectRequest);
+                    //String url = "https://api.npoint.io/46f5ca0fab34ed2a17ec";
+/***
+                    final String[] text = new String[1];
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, converted_url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
-            }
+                            try {
+                                JSONArray jsonArray = response.getJSONArray("alert");
+
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                    text[0] = jsonObject.getString("Text");
+
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            builder.setTitle("Updates")
+                                    .setMessage(text[0])
+                                    .setCancelable(true)
+                                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.cancel();
+                                        }
+                                    })
+                                    .setPositiveButton("Next", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface1, int i) {
+                                            builder.setTitle("Performance Analysis")
+                                                    .setMessage("To help us analyze your performance, please rate your most recent run.")
+                                                    .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface1, int i) {
+                                                            Intent intent = new Intent(MainMenu.this, RatingRun.class);
+                                                            startActivity(intent);
+                                                        }
+                                                    });
+                                            builder.show();
+                                        }
+
+                                    })
+                                    .show();
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(MainMenu.this, error.getMessage(), Toast.LENGTH_SHORT);
+                        }
+                    });
+
+                    requestQueue.add(jsonObjectRequest);
+
+                }
+            });***/
+        }
         });
     }
 }
