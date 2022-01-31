@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,8 +20,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,8 +71,16 @@ public class SelectWeek extends AppCompatActivity {
                 program_details2_textView.setTextColor(Color.parseColor("#000000"));
                 program_details3_textView.setTextColor(Color.parseColor("#000000"));
 
+                StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("testprogram.json");
+                storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
 
-                String url = "https://api.npoint.io/b1c135e19ff0a4ca5205";
+                        String url = uri.toString();
+
+
+
+                //String url = "https://api.npoint.io/b1c135e19ff0a4ca5205";
                 if (position == 0) {
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                         @Override
@@ -925,6 +937,8 @@ public class SelectWeek extends AppCompatActivity {
             }
 
         });
+            }
+        });
 
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -945,6 +959,7 @@ public class SelectWeek extends AppCompatActivity {
 
             return true;
         });
+
 
     }
 }

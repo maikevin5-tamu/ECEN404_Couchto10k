@@ -3,6 +3,7 @@ package com.example.myloginapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.storage.FirebaseStorage;
@@ -52,10 +54,57 @@ public class MostRecentRun extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "https://api.npoint.io/3655039531492f7a283d";
+                StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("testrm.json");
+                storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+
+                        String url = uri.toString();
+
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    JSONArray jsonArray = response.getJSONArray("metrics");
+
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                        int BPMRun = jsonObject.getInt("BPM Run");
+                                        int BPMWalk = jsonObject.getInt("BPM Walk");
+                                        int Distance = jsonObject.getInt("Distance");
+                                        int BrPM = jsonObject.getInt("BrPM");
+                                        int Calories = jsonObject.getInt("Calories");
+
+                                        BPMRun_TextInput.append(String.valueOf(BPMRun) + " BPM during Run (average)");
+                                        BPMWalk_TextInput.append(String.valueOf(BPMWalk) + " BPM during Walk (average)");
+                                        Distance_TextInput.append(String.valueOf(Distance) + " miles");
+                                        BrPM_TextInput.append(String.valueOf(BrPM) + " Breaths per Minute");
+                                        Calories_TextInput.append(String.valueOf(Calories) + " Calories Burned");
 
 
+                                    }
 
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(MostRecentRun.this, error.getMessage(), Toast.LENGTH_SHORT);
+                            }
+                        });
+
+                        requestQueue.add(jsonObjectRequest);
+
+                    }
+                });
+                //String url = "https://api.npoint.io/3655039531492f7a283d";
+
+
+/***
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -92,7 +141,7 @@ public class MostRecentRun extends AppCompatActivity {
                     }
                 });
 
-                requestQueue.add(jsonObjectRequest);
+                requestQueue.add(jsonObjectRequest); *///
 
                 }
             });
