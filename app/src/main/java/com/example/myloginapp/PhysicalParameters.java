@@ -70,29 +70,52 @@ public class PhysicalParameters extends New_User implements AdapterView.OnItemSe
                 String txt_sex = spinner_sex.getSelectedItem().toString();
 
                 FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                Toast.makeText(PhysicalParameters.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(PhysicalParameters.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
                 String txt_UID = currentFirebaseUser.getUid();
 
                 if (txt_height.isEmpty() || txt_weight.isEmpty() || txt_age.isEmpty()) {
                     Toast.makeText(PhysicalParameters.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                 } else {
-                    databaseReference.child("User ID").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            databaseReference.child("User ID").child(txt_UID).child("height").setValue(txt_height);
-                            databaseReference.child("User ID").child(txt_UID).child("weight").setValue(txt_weight);
-                            databaseReference.child("User ID").child(txt_UID).child("age").setValue(txt_age);
-                            databaseReference.child("User ID").child(txt_UID).child("sex").setValue(txt_sex);
-                            Intent intent = new Intent(PhysicalParameters.this, PhysicalParameters3.class);
-                            startActivity(intent);
+                    if (isNumeric(txt_height) == false) {
+                        Toast.makeText(PhysicalParameters.this, "Please enter an numeric height", Toast.LENGTH_SHORT).show();
+                    } else if (isNumeric(txt_weight) == false) {
+                        Toast.makeText(PhysicalParameters.this, "Please enter an numeric weight", Toast.LENGTH_SHORT).show();
+                    } else if (isNumeric(txt_age) == false) {
+                        Toast.makeText(PhysicalParameters.this, "Please enter an numeric age", Toast.LENGTH_SHORT).show();
+                    } else {
+                        int int_height = Integer.parseInt(txt_height);
+                        int int_weight = Integer.parseInt(txt_height);
+                        int int_age = Integer.parseInt(txt_age);
+
+                        if ((int_height > 84) || (int_height < 48)) {
+                            Toast.makeText(PhysicalParameters.this, "Please enter an accurate height", Toast.LENGTH_SHORT).show();
+                        } else if ((int_weight > 300) || (int_weight < 40)) {
+                            Toast.makeText(PhysicalParameters.this, "Please enter an accurate weight", Toast.LENGTH_SHORT).show();
+                        } else if ((int_age > 110) || (int_age < 4)) {
+                            Toast.makeText(PhysicalParameters.this, "Please enter an accurate age", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            databaseReference.child("User ID").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                    databaseReference.child("User ID").child(txt_UID).child("height").setValue(txt_height);
+                                    databaseReference.child("User ID").child(txt_UID).child("weight").setValue(txt_weight);
+                                    databaseReference.child("User ID").child(txt_UID).child("age").setValue(txt_age);
+                                    databaseReference.child("User ID").child(txt_UID).child("sex").setValue(txt_sex);
+                                    Intent intent = new Intent(PhysicalParameters.this, PhysicalParameters3.class);
+                                    startActivity(intent);
+                                }
+
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                         }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                    }
                 }
             }
         });
@@ -106,6 +129,10 @@ public class PhysicalParameters extends New_User implements AdapterView.OnItemSe
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public boolean isNumeric(String s) {
+        return s != null && s.matches("[-+]?\\d*\\.?\\d+");
     }
 
 }
