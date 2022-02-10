@@ -54,7 +54,7 @@ public class MostRecentRun extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("testrm.json");
+                StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("testing/BackEndTestData.json");
                 storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {

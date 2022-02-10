@@ -30,12 +30,11 @@ public class LifetimeMetricsSub extends AppCompatActivity {
         setContentView(R.layout.activity_lifetime_metrics_sub);
 
         StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("plots/plot1.png");
-        StorageReference storageReference2 = FirebaseStorage.getInstance().getReference().child("plots/plot2.png");
-
+        StorageReference storageReference2 = FirebaseStorage.getInstance().getReference().child("testImages/DemoTest.png");
 
         try {
             final File plot1 = File.createTempFile("plot1", "png");
-            final File plot2 = File.createTempFile("plot2", "png");
+            final File plot2 = File.createTempFile("testplot", "png");
             storageReference1.getFile(plot1)
                     .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                         @Override
@@ -66,6 +65,7 @@ public class LifetimeMetricsSub extends AppCompatActivity {
 
                 }
             });
+
         } catch (IOException e) {
             e.printStackTrace();
         }

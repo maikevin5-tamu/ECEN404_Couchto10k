@@ -53,7 +53,7 @@ public class New_User extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String txt_email = email.getText().toString();
+                String txt_email = email.getText().toString().trim();
                 String txt_password = password.getText().toString();
                 String txt_con_password = con_password.getText().toString();
 

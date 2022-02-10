@@ -56,6 +56,7 @@ public class PhysicalParameters extends New_User implements AdapterView.OnItemSe
         spinner_sex.setAdapter(adapter);
         spinner_sex.setOnItemSelectedListener(this);
 
+
         auth = FirebaseAuth.getInstance();
 
         FirebaseUser firebaseUser = auth.getCurrentUser();
@@ -104,8 +105,15 @@ public class PhysicalParameters extends New_User implements AdapterView.OnItemSe
                                     databaseReference.child("User ID").child(txt_UID).child("weight").setValue(txt_weight);
                                     databaseReference.child("User ID").child(txt_UID).child("age").setValue(txt_age);
                                     databaseReference.child("User ID").child(txt_UID).child("sex").setValue(txt_sex);
-                                    Intent intent = new Intent(PhysicalParameters.this, PhysicalParameters3.class);
-                                    startActivity(intent);
+
+                                    if (txt_sex.equals("Male")) {
+                                        Intent intent = new Intent(PhysicalParameters.this, PhysicalParameters4.class);
+                                        startActivity(intent);
+                                    }
+                                    else {
+                                        Intent intent = new Intent(PhysicalParameters.this, PhysicalParameters3.class);
+                                        startActivity(intent);
+                                    }
                                 }
 
 
