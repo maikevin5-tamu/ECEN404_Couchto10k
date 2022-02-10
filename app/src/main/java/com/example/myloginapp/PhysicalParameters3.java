@@ -18,8 +18,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,9 +75,25 @@ public class PhysicalParameters3 extends AppCompatActivity{
                     }
                 }
 
+                DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("None") && (snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("Respiratory Disease") || snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("Cardiovascular Disease") || snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("Pregnancy"))) {
+                            Toast.makeText(PhysicalParameters3.this, "Invalid inputs, please try again", Toast.LENGTH_SHORT).show();
+                            rootRef.child("User ID").child(txt_UID).child("medical conditions").removeValue();
+                        }
+                        else {
+                            Intent intent = new Intent(PhysicalParameters3.this, Cto10k_Context.class);
+                            startActivity(intent);
+                        }
+                    }
 
-                Intent intent = new Intent(PhysicalParameters3.this, Cto10k_Context.class);
-                startActivity(intent);
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
     }
