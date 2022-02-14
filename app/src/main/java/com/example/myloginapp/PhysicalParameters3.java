@@ -64,13 +64,13 @@ public class PhysicalParameters3 extends AppCompatActivity{
                             databaseReference.child("User ID").child(txt_UID).child("medical conditions").child("Respiratory Disease").setValue(1);
                         }
                         else if (j == 1) {
-                            databaseReference.child("User ID").child(txt_UID).child("medical conditions").child("Cardiovascular Disease").setValue(1);
+                            databaseReference.child("User ID").child(txt_UID).child("medical conditions").child("Cardiovascular Disease").setValue(2);
                         }
                         else if (j == 2) {
-                            databaseReference.child("User ID").child(txt_UID).child("medical conditions").child("Pregnancy").setValue(1);
+                            databaseReference.child("User ID").child(txt_UID).child("medical conditions").child("Pregnancy").setValue(3);
                         }
                         else if (j == 3) {
-                            databaseReference.child("User ID").child(txt_UID).child("medical conditions").child("None").setValue(1);
+                            databaseReference.child("User ID").child(txt_UID).child("medical conditions").child("None").setValue(4);
                         }
                     }
                 }
