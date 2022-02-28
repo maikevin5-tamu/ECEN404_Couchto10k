@@ -13,6 +13,8 @@ import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -155,11 +157,17 @@ public class Bluetooth extends AppCompatActivity implements AdapterView.OnItemCl
     protected void onDestroy() {
         Log.d(TAG, "onDestroy: called.");
         super.onDestroy();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver1);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver2);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver3);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver4);
+        /***
         unregisterReceiver(mBroadcastReceiver1);
         unregisterReceiver(mBroadcastReceiver2);
         unregisterReceiver(mBroadcastReceiver3);
         unregisterReceiver(mBroadcastReceiver4);
-        //mBluetoothAdapter.cancelDiscovery();
+         ***/
+        mBluetoothAdapter.cancelDiscovery();
     }
 
     @Override
@@ -189,6 +197,7 @@ public class Bluetooth extends AppCompatActivity implements AdapterView.OnItemCl
         });
 
     }
+
 
 
 

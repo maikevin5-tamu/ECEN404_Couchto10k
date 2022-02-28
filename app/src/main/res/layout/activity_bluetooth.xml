@@ -20,7 +20,7 @@
         android:id="@+id/btnONOFF"/>
 
     <Button
-        android:text="Enable Discoverable"
+        android:text="Discoverable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnDiscoverable_on_off"
@@ -32,14 +32,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnFindUnpairedDevices"
-        android:text="Discover"
+        android:text="Search"
         android:onClick="btnDiscover"/>
 
     <ListView
-        android:layout_below="@+id/btnFindUnpairedDevices"
+        android:id="@+id/lvNewDevices"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:id="@+id/lvNewDevices"/>
+        android:layout_height="550dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/btnFindUnpairedDevices" />
 
 
 </RelativeLayout>
