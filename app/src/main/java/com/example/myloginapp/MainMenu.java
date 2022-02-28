@@ -69,6 +69,15 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
+        button = findViewById(R.id.Bluetooth_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainMenu.this, Bluetooth.class);
+                startActivity(intent);
+            }
+        });
+
         title = findViewById(R.id.title);
         bottomNavigationView = findViewById(R.id.bottom_navigator);
         bottomNavigationView.setSelectedItemId(R.id.Home_dash);

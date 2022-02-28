@@ -6,8 +6,15 @@
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/drawable/border.xml" value="0.32685185185185184" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/drawable/ic_baseline_add_alert_24.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/drawable/selector.xml" value="0.23425925925925925" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_bluetooth.xml" value="0.34193840579710144" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_bluetooth1.xml" value="0.3484375" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_bottom_nav.xml" value="0.2601010101010101" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_chat_utils.xml" value="0.3625" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_cto10k_context.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_device_adapter_view.xml" value="0.3625" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_device_item_list.xml" value="0.3625" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_device_list.xml" value="0.3625" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_device_list_adapter.xml" value="0.3625" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_lifetime_metrics.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_lifetime_metrics_sub.xml" value="0.33" />
@@ -39,10 +46,14 @@
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_running_metrics_dashboard.xml" value="0.1" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_select_week.xml" value="0.3055555555555556" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_welcome_page.xml" value="0.33" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/device_list_item.xml" value="0.3625" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/items_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/message_layout.xml" value="0.3625" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/welcome_page.xml" value="0.20677083333333332" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/menu/menu.xml" value="0.1" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/menu/menu2.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/menu/menu_device_list.xml" value="0.3625" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/menu/menu_main_activity.xml" value="0.3625" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/xml/network_security_config.xml" value="0.1" />
       </map>
     </option>
