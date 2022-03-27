@@ -22,6 +22,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 
 public class New_User extends AppCompatActivity {
@@ -96,18 +98,22 @@ public class New_User extends AppCompatActivity {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(New_User.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                //doesnt upload login information into realtime database, but registers account
+
                 if (task.isSuccessful()) {
                     databaseReference.child("User ID").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                             FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                            Toast.makeText(New_User.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(New_User.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(New_User.this, "" + currentFirebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
                             String txt_UID = currentFirebaseUser.getUid();
+                            String txt_email_node = currentFirebaseUser.getEmail();
+
 
                             databaseReference.child("User ID").child(txt_UID).child("email").setValue(email);
                             databaseReference.child("User ID").child(txt_UID).child("password").setValue(password);
+
 
                             Toast.makeText(New_User.this, "User registered successfully.", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(New_User.this, PhysicalParameters.class);
