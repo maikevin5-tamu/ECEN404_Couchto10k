@@ -101,10 +101,22 @@ public class PhysicalParameters extends New_User implements AdapterView.OnItemSe
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                                    databaseReference.child("User ID").child(txt_UID).child("height").setValue(txt_height);
-                                    databaseReference.child("User ID").child(txt_UID).child("weight").setValue(txt_weight);
-                                    databaseReference.child("User ID").child(txt_UID).child("age").setValue(txt_age);
-                                    databaseReference.child("User ID").child(txt_UID).child("sex").setValue(txt_sex);
+                                    FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                                    //String txt_UID = currentFirebaseUser.getUid();
+                                    String txt_email_node = currentFirebaseUser.getEmail();
+
+                                    int iend = txt_email_node.indexOf("@");
+
+                                    String email_SS = "";
+                                    if (iend != -1)
+                                    {
+                                        email_SS = txt_email_node.substring(0 , iend); //this will give abc
+                                    }
+
+                                    databaseReference.child("User ID").child(email_SS).child("height").setValue(txt_height);
+                                    databaseReference.child("User ID").child(email_SS).child("weight").setValue(txt_weight);
+                                    databaseReference.child("User ID").child(email_SS).child("age").setValue(txt_age);
+                                    databaseReference.child("User ID").child(email_SS).child("sex").setValue(txt_sex);
 
                                     if (txt_sex.equals("Male")) {
                                         Intent intent = new Intent(PhysicalParameters.this, PhysicalParameters4.class);

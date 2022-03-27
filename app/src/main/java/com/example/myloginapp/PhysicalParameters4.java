@@ -48,21 +48,32 @@ public class PhysicalParameters4 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                //Toast.makeText(PhysicalParameters3.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
                 String txt_UID = currentFirebaseUser.getUid();
+                //String txt_UID = currentFirebaseUser.getUid();
+                String txt_email_node = currentFirebaseUser.getEmail();
+
+                int iend = txt_email_node.indexOf("@");
+
+                String email_SS = "";
+                if (iend != -1)
+                {
+                    email_SS = txt_email_node.substring(0 , iend); //this will give abc
+                }
 
                 SparseBooleanArray checked = listViewData.getCheckedItemPositions();
                 for (int j = 0; j < listViewData.getCount(); j++) {
                     if (checked.get(j)) {
                         String item = med_conditions[j];
                         if (j == 0) {
-                            databaseReference.child("User ID").child(txt_UID).child("medical conditions").child("Respiratory Disease").setValue(1);
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Respiratory Disease").setValue(1);
                         }
                         else if (j == 1) {
-                            databaseReference.child("User ID").child(txt_UID).child("medical conditions").child("Cardiovascular Disease").setValue(2);
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Cardiovascular Disease").setValue(2);
                         }
                         else if (j == 2) {
-                            databaseReference.child("User ID").child(txt_UID).child("medical conditions").child("None").setValue(3);
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("None").setValue(3);
                         }
                     }
                 }
@@ -72,9 +83,24 @@ public class PhysicalParameters4 extends AppCompatActivity {
                 rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("None") && (snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("Respiratory Disease") || snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("Cardiovascular Disease"))) {
+
+                        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                        //Toast.makeText(PhysicalParameters3.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+                        String txt_UID = currentFirebaseUser.getUid();
+                        //String txt_UID = currentFirebaseUser.getUid();
+                        String txt_email_node = currentFirebaseUser.getEmail();
+
+                        int iend = txt_email_node.indexOf("@");
+
+                        String email_SS = "";
+                        if (iend != -1)
+                        {
+                            email_SS = txt_email_node.substring(0 , iend); //this will give abc
+                        }
+
+                        if (snapshot.child("User ID").child(email_SS).child("medical conditions").hasChild("None") && (snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("Respiratory Disease") || snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("Cardiovascular Disease"))) {
                             Toast.makeText(PhysicalParameters4.this, "Invalid inputs, please try again", Toast.LENGTH_SHORT).show();
-                            rootRef.child("User ID").child(txt_UID).child("medical conditions").removeValue();
+                            rootRef.child("User ID").child(email_SS).child("medical conditions").removeValue();
                         }
                         else {
                             Intent intent = new Intent(PhysicalParameters4.this, Cto10k_Context.class);

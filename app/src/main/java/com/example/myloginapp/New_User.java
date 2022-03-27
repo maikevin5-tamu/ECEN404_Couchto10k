@@ -105,14 +105,20 @@ public class New_User extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                             FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                            //Toast.makeText(New_User.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
-                            //Toast.makeText(New_User.this, "" + currentFirebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
-                            String txt_UID = currentFirebaseUser.getUid();
+                            //String txt_UID = currentFirebaseUser.getUid();
                             String txt_email_node = currentFirebaseUser.getEmail();
 
+                            int iend = txt_email_node.indexOf("@");
 
-                            databaseReference.child("User ID").child(txt_UID).child("email").setValue(email);
-                            databaseReference.child("User ID").child(txt_UID).child("password").setValue(password);
+                            String email_SS = "";
+                            if (iend != -1)
+                            {
+                                email_SS = txt_email_node.substring(0 , iend); //this will give abc
+                            }
+
+
+                            //databaseReference.child("User ID").child(txt_UID).child("email").setValue(email);
+                            databaseReference.child("User ID").child(email_SS).child("password").setValue(password);
 
 
                             Toast.makeText(New_User.this, "User registered successfully.", Toast.LENGTH_SHORT).show();
