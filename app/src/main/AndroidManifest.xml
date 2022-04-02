@@ -21,6 +21,12 @@
         android:theme="@style/Theme.MyLoginApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".CurrentWeek"
+            android:exported="true" />
+        <activity
+            android:name=".ExperiencePP"
+            android:exported="true" />
+        <activity
             android:name=".device_adapter_view"
             android:exported="true" />
         <activity

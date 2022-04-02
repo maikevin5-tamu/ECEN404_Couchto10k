@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainProgramModule extends AppCompatActivity {
 
     private Button selectweek_button;
+    private Button currentweek_button;
 
     BottomNavigationView bottomNavigationView;
     TextView title;
@@ -32,6 +33,15 @@ public class MainProgramModule extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainProgramModule.this, SelectWeek.class);
+                startActivity(intent);
+            }
+        });
+
+        currentweek_button = findViewById(R.id.CurrentWeek_btn);
+        currentweek_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainProgramModule.this, CurrentWeek.class);
                 startActivity(intent);
             }
         });

@@ -82,21 +82,44 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
 
-                    FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                    //Toast.makeText(PhysicalParameters3.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
-                    String txt_UID = currentFirebaseUser.getUid();
 
                     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
                     rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.child("User ID").child(txt_UID).hasChild("height")) {
-                                String compare = Objects.requireNonNull(snapshot.child("User ID").child(txt_UID).child("sex").getValue()).toString();
+
+                            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                            //Toast.makeText(PhysicalParameters3.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+                            String txt_UID = currentFirebaseUser.getUid();
+
+                            //String txt_UID = currentFirebaseUser.getUid();
+                            String txt_email_node = currentFirebaseUser.getEmail();
+
+                            int iend = txt_email_node.indexOf("@");
+
+                            String email_SS = "";
+                            if (iend != -1)
+                            {
+                                email_SS = txt_email_node.substring(0 , iend); //this will give abc
+                            }
+
+                            if (snapshot.child("User ID").child(email_SS).hasChild("height")) {
+                                String compare = Objects.requireNonNull(snapshot.child("User ID").child(email_SS).child("sex").getValue()).toString();
                                 if (compare.equals("Male")) {
-                                    if (snapshot.child("User ID").child(txt_UID).hasChild("medical conditions")) {
-                                        Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(MainActivity.this, MainMenu.class);
-                                        startActivity(intent);
+                                    if (snapshot.child("User ID").child(email_SS).hasChild("medical conditions")) {
+
+                                        if (snapshot.child("User ID").child(email_SS).hasChild("RE")) {
+                                            Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(MainActivity.this, MainMenu.class);
+                                            startActivity(intent);
+                                        }
+
+                                        else {
+                                            Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(MainActivity.this, ExperiencePP.class);
+                                            startActivity(intent);
+                                        }
+
                                     }
                                     else {
                                         Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
@@ -105,10 +128,20 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 }
                                 else {
-                                    if (snapshot.child("User ID").child(txt_UID).hasChild("medical conditions")) {
-                                        Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(MainActivity.this, MainMenu.class);
-                                        startActivity(intent);
+                                    if (snapshot.child("User ID").child(email_SS).hasChild("medical conditions")) {
+
+                                        if (snapshot.child("User ID").child(email_SS).hasChild("RE")) {
+                                            Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(MainActivity.this, MainMenu.class);
+                                            startActivity(intent);
+                                        }
+
+                                        else {
+                                            Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(MainActivity.this, ExperiencePP.class);
+                                            startActivity(intent);
+                                        }
+
                                     }
                                     else {
                                         Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();

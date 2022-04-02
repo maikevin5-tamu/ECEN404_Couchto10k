@@ -109,7 +109,7 @@ public class PhysicalParameters3 extends AppCompatActivity{
                             rootRef.child("User ID").child(email_SS).child("medical conditions").removeValue();
                         }
                         else {
-                            Intent intent = new Intent(PhysicalParameters3.this, Cto10k_Context.class);
+                            Intent intent = new Intent(PhysicalParameters3.this, ExperiencePP.class);
                             startActivity(intent);
                         }
                     }

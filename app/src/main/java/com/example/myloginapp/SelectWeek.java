@@ -23,6 +23,8 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -71,7 +73,18 @@ public class SelectWeek extends AppCompatActivity {
                 program_details2_textView.setTextColor(Color.parseColor("#000000"));
                 program_details3_textView.setTextColor(Color.parseColor("#000000"));
 
-                StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("testprogram.json");
+                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                //String txt_UID = currentFirebaseUser.getUid();
+                String txt_email_node = currentFirebaseUser.getEmail();
+
+                int iend = txt_email_node.indexOf("@");
+
+                String email_SS = "";
+                if (iend != -1) {
+                    email_SS = txt_email_node.substring(0, iend); //this will give abc
+                }
+
+                StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child(email_SS + "/Programs/TotalProgram.json");
                 storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
