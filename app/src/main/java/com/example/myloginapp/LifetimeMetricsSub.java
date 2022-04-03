@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -29,8 +31,20 @@ public class LifetimeMetricsSub extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lifetime_metrics_sub);
 
-        StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("plots/plot1.png");
-        StorageReference storageReference2 = FirebaseStorage.getInstance().getReference().child("testImages/DemoTest.png");
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        //String txt_UID = currentFirebaseUser.getUid();
+        String txt_email_node = currentFirebaseUser.getEmail();
+
+        int iend = txt_email_node.indexOf("@");
+
+        String email_SS = "";
+        if (iend != -1) {
+            email_SS = txt_email_node.substring(0, iend); //this will give abc
+        }
+
+
+        StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child(email_SS + "/RunningMetrics/Plots/AverageRestingHeartrate.png");
+        StorageReference storageReference2 = FirebaseStorage.getInstance().getReference().child(email_SS + "/RunningMetrics/Plots/VO2Max.png");;
 
         try {
             final File plot1 = File.createTempFile("plot1", "png");

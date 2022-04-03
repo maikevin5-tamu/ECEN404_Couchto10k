@@ -110,8 +110,18 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                //String txt_UID = currentFirebaseUser.getUid();
+                String txt_email_node = currentFirebaseUser.getEmail();
 
-                StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("alerts.json");
+                int iend = txt_email_node.indexOf("@");
+
+                String email_SS = "";
+                if (iend != -1) {
+                    email_SS = txt_email_node.substring(0, iend); //this will give abc
+                }
+
+                StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child(email_SS + "/Alerts/alerts.json");
                 storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {

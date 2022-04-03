@@ -54,18 +54,26 @@ public class RatingRun extends AppCompatActivity implements AdapterView.OnItemSe
                 String txt_rating = spinner_rating.getSelectedItem().toString();
 
 
-                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                //Toast.makeText(RatingRun.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
-                String txt_UID = currentFirebaseUser.getUid();
-
                 if (txt_rating.isEmpty() ){
                     Toast.makeText(RatingRun.this, "Please provide a rating", Toast.LENGTH_SHORT).show();
                 } else {
+
                     databaseReference.child("User ID").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            databaseReference.child("User ID").child(txt_UID).child("rating").setValue(txt_rating);
+                            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                            //String txt_UID = currentFirebaseUser.getUid();
+                            String txt_email_node = currentFirebaseUser.getEmail();
+
+                            int iend = txt_email_node.indexOf("@");
+
+                            String email_SS = "";
+                            if (iend != -1) {
+                                email_SS = txt_email_node.substring(0, iend); //this will give abc
+                            }
+
+                            databaseReference.child("User ID").child(email_SS).child("rating").setValue(txt_rating);
                             Intent intent = new Intent(RatingRun.this, MainMenu.class);
                             startActivity(intent);
                         }
