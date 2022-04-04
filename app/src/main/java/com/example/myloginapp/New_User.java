@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.renderscript.Sampler;
 import android.text.TextUtils;
 import android.view.View;
@@ -36,6 +37,8 @@ public class New_User extends AppCompatActivity {
     private FirebaseAuth auth;
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://couch-to-10k-testing-default-rtdb.firebaseio.com/");
+
+    StorageReference firebaseStorage = FirebaseStorage.getInstance().getReferenceFromUrl("gs://couch-to-10k-testing.appspot.com");
 
 
     @Override
@@ -74,6 +77,7 @@ public class New_User extends AppCompatActivity {
                 }
 
                 else{
+
                     databaseReference.child("User ID").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -119,6 +123,12 @@ public class New_User extends AppCompatActivity {
 
                             //databaseReference.child("User ID").child(txt_UID).child("email").setValue(email);
                             databaseReference.child("User ID").child(email_SS).child("password").setValue(password);
+
+
+                            firebaseStorage.child(email_SS);
+                            //firebaseStorage.child(email_SS).child("Alerts");
+                            //firebaseStorage.child(email_SS).child("Programs");
+                            //firebaseStorage.child(email_SS).child("RunningMetrics");
 
 
                             Toast.makeText(New_User.this, "User registered successfully.", Toast.LENGTH_SHORT).show();

@@ -73,7 +73,9 @@ public class PhysicalParameters4 extends AppCompatActivity {
                             databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Cardiovascular Disease").setValue(2);
                         }
                         else if (j == 2) {
-                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("None").setValue(3);
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Respiratory Disease").setValue(0);
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Cardiovascular Disease").setValue(0);
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Pregnancy").setValue(0);
                         }
                     }
                 }
@@ -103,6 +105,7 @@ public class PhysicalParameters4 extends AppCompatActivity {
                             rootRef.child("User ID").child(email_SS).child("medical conditions").removeValue();
                         }
                         else {
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Pregnancy").setValue(0);
                             Intent intent = new Intent(PhysicalParameters4.this, ExperiencePP.class);
                             startActivity(intent);
                         }
