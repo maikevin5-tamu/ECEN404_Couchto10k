@@ -72,6 +72,7 @@ public class CurrentWeek extends AppCompatActivity {
                 }
 
                 StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child(email_SS + "/Programs/CurrentWeek.json");
+                //StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child(email_SS + "/test_currentweek.json");
                 storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {

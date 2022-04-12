@@ -68,7 +68,21 @@ public class ExperiencePP extends New_User implements AdapterView.OnItemSelected
                             email_SS = txt_email_node.substring(0, iend); //this will give abc
                         }
 
-                        databaseReference.child("User ID").child(email_SS).child("RE").setValue(txt_RE);
+                        String txt_RE = spinner_RE.getSelectedItem().toString();
+
+                        if (txt_RE.equals("Beginner")) {
+                            databaseReference.child("User ID").child(email_SS).child("RE").setValue(txt_RE);
+                            databaseReference.child("User ID").child(email_SS).child("Day").setValue(1);
+                            databaseReference.child("User ID").child(email_SS).child("Week").setValue(1);
+                        }
+
+                        else {
+                            databaseReference.child("User ID").child(email_SS).child("RE").setValue(txt_RE);
+                            databaseReference.child("User ID").child(email_SS).child("Day").setValue(1);
+                            databaseReference.child("User ID").child(email_SS).child("Week").setValue(7);
+                        }
+
+
 
                         Intent intent = new Intent(ExperiencePP.this, Cto10k_Context.class);
                         startActivity(intent);
