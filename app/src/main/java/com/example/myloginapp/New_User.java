@@ -38,7 +38,9 @@ public class New_User extends AppCompatActivity {
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://couch-to-10k-testing-default-rtdb.firebaseio.com/");
 
-    StorageReference firebaseStorage = FirebaseStorage.getInstance().getReferenceFromUrl("gs://couch-to-10k-testing.appspot.com");
+    StorageReference firebaseStorage = FirebaseStorage.getInstance().getReferenceFromUrl("gs://couch-to-10k-testing.appspot.com/");
+
+    FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
     @Override
@@ -108,7 +110,7 @@ public class New_User extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
                             //String txt_UID = currentFirebaseUser.getUid();
                             String txt_email_node = currentFirebaseUser.getEmail();
 
@@ -120,12 +122,12 @@ public class New_User extends AppCompatActivity {
                                 email_SS = txt_email_node.substring(0 , iend); //this will give abc
                             }
 
+                            firebaseStorage.child(email_SS);
 
                             //databaseReference.child("User ID").child(txt_UID).child("email").setValue(email);
                             databaseReference.child("User ID").child(email_SS).child("password").setValue(password);
 
-
-                            firebaseStorage.child(email_SS);
+                            //firebaseStorage.child(email_SS);
                             //firebaseStorage.child(email_SS).child("Alerts");
                             //firebaseStorage.child(email_SS).child("Programs");
                             //firebaseStorage.child(email_SS).child("RunningMetrics");

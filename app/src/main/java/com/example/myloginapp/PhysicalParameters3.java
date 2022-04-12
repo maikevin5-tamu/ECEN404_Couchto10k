@@ -106,12 +106,20 @@ public class PhysicalParameters3 extends AppCompatActivity{
                             email_SS = txt_email_node.substring(0 , iend); //this will give abc
                         }
 
+
+
                         if (snapshot.child("User ID").child(email_SS).child("medical conditions").hasChild("None") && (snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("Respiratory Disease") || snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("Cardiovascular Disease") || snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("Pregnancy"))) {
                             Toast.makeText(PhysicalParameters3.this, "Invalid inputs, please try again", Toast.LENGTH_SHORT).show();
                             rootRef.child("User ID").child(email_SS).child("medical conditions").removeValue();
                         }
                         else if (!(snapshot.child("User ID").child(email_SS).child("medical conditions").hasChild("Pregnancy"))) {
                             databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Pregnancy").setValue(0);
+                        }
+                        else if (!(snapshot.child("User ID").child(email_SS).child("medical conditions").hasChild("Respiratory Disease"))) {
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Respiratory Disease").setValue(0);
+                        }
+                        else if (!(snapshot.child("User ID").child(email_SS).child("medical conditions").hasChild("Cardiovascular Disease"))) {
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Cardiovascular Disease").setValue(0);
                         }
                         else {
                             Intent intent = new Intent(PhysicalParameters3.this, ExperiencePP.class);
