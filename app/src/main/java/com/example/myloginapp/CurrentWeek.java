@@ -2,6 +2,7 @@ package com.example.myloginapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -150,6 +151,25 @@ public class CurrentWeek extends AppCompatActivity {
 
                     }
                 });
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.RunningMetrics_dash:
+                    startActivity(new Intent(getApplicationContext(), LifetimeMetrics.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.Home_dash:
+                    startActivity(new Intent(getApplicationContext(), MainMenu.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.Program_dash:
+                    startActivity(new Intent(getApplicationContext(), MainProgramModule.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+            }
+
+            return true;
+        });
             }
     }
 
