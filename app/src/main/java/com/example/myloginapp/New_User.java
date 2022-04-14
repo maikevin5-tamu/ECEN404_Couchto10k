@@ -38,7 +38,7 @@ public class New_User extends AppCompatActivity {
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://couch-to-10k-testing-default-rtdb.firebaseio.com/");
 
-    StorageReference firebaseStorage = FirebaseStorage.getInstance().getReferenceFromUrl("gs://couch-to-10k-testing.appspot.com/");
+    StorageReference firebaseStorage = FirebaseStorage.getInstance().getReferenceFromUrl("gs://couch-to-10k-testing.appspot.com");
 
     FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -121,6 +121,7 @@ public class New_User extends AppCompatActivity {
                             {
                                 email_SS = txt_email_node.substring(0 , iend); //this will give abc
                             }
+
 
                             firebaseStorage.child(email_SS);
 

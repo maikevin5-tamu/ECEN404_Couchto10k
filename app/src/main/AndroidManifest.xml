@@ -21,6 +21,12 @@
         android:theme="@style/Theme.MyLoginApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".IntAdvProgram"
+            android:exported="true" />
+        <activity
+            android:name=".BeginnerProgram"
+            android:exported="true" />
+        <activity
             android:name=".CurrentWeek"
             android:exported="true" />
         <activity

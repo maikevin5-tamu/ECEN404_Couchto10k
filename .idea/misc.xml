@@ -6,6 +6,7 @@
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/drawable/border.xml" value="0.32685185185185184" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/drawable/ic_baseline_add_alert_24.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/drawable/selector.xml" value="0.23425925925925925" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_beginner_program.xml" value="0.3625" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_bluetooth.xml" value="0.34193840579710144" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_bluetooth1.xml" value="0.3484375" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_bottom_nav.xml" value="0.2601010101010101" />
@@ -18,6 +19,7 @@
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_device_list_adapter.xml" value="0.3625" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_experience_pp.xml" value="0.3625" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_int_adv_program.xml" value="0.3625" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_lifetime_metrics.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_lifetime_metrics_sub.xml" value="0.33" />
         <entry key="..\:/Users/maike/AndroidStudioProjects/MyLoginApp/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />

@@ -72,14 +72,14 @@ public class ExperiencePP extends New_User implements AdapterView.OnItemSelected
 
                         if (txt_RE.equals("Beginner")) {
                             databaseReference.child("User ID").child(email_SS).child("RE").setValue(txt_RE);
-                            databaseReference.child("User ID").child(email_SS).child("Day").setValue(1);
-                            databaseReference.child("User ID").child(email_SS).child("Week").setValue(1);
+                            databaseReference.child("User ID").child(email_SS).child("day").setValue(1);
+                            databaseReference.child("User ID").child(email_SS).child("week").setValue(1);
                         }
 
                         else {
                             databaseReference.child("User ID").child(email_SS).child("RE").setValue(txt_RE);
-                            databaseReference.child("User ID").child(email_SS).child("Day").setValue(1);
-                            databaseReference.child("User ID").child(email_SS).child("Week").setValue(7);
+                            databaseReference.child("User ID").child(email_SS).child("day").setValue(1);
+                            databaseReference.child("User ID").child(email_SS).child("week").setValue(7);
                         }
 
 
