@@ -16,7 +16,7 @@ public class IntAdvProgram extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_int_adv_program);
 
-        button = findViewById(R.id.next_cto10k);
+        button = findViewById(R.id.Next);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

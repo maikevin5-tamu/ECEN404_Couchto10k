@@ -15,7 +15,7 @@
     android:layout_marginEnd="50dp"
     android:layout_marginBottom="50dp"
     android:gravity="center"
-    android:text="First Week"
+    android:text="First Week (Week 1)"
     android:textColor="@color/black"
     android:textSize="35dp"
     android:textStyle="bold" />

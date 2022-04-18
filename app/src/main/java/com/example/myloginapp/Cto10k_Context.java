@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -68,8 +69,34 @@ public class Cto10k_Context extends AppCompatActivity {
                     email_SS = txt_email_node.substring(0, iend); //this will give abc
                 }
 
+                String string1 = (String) snapshot.child("User ID").child(email_SS).child("RE").getValue();
 
-                if (databaseReference.child(email_SS).child("RE").equals("Beginner")) {
+                button = findViewById(R.id.next_cto10k);
+
+                if (string1.equals("Beginner")) {
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Cto10k_Context.this, BeginnerProgram.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+
+                else {
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Cto10k_Context.this, IntAdvProgram.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+
+
+
+/***
+                if (rootRef.child("User ID").child(email_SS).child("week").equalTo(1)) {
                     button = findViewById(R.id.next_cto10k);
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -98,12 +125,16 @@ public class Cto10k_Context extends AppCompatActivity {
 
             }
 
+
+        *///
+
+
+        }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
-
-        }
+    }
 }
