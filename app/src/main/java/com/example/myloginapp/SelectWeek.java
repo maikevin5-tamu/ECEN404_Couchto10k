@@ -84,7 +84,7 @@ public class SelectWeek extends AppCompatActivity {
                     email_SS = txt_email_node.substring(0, iend); //this will give abc
                 }
 
-                StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child(email_SS + "/Programs/TotalProgram.json");
+                StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child(email_SS + "/Programs/TotalProgramEX.json");
                 //StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child(email_SS + "/test_totalprogram.json");
                 storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override

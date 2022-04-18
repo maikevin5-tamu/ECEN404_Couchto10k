@@ -16,6 +16,7 @@ public class LifetimeMetrics extends AppCompatActivity {
     TextView title;
     private Button button;
     private Button button1;
+    private Button button2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,15 @@ public class LifetimeMetrics extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LifetimeMetrics.this, LifetimeMetricsSub.class);
+                startActivity(intent);
+            }
+        });
+
+        button2 = findViewById(R.id.lastrungraph_btn);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LifetimeMetrics.this, RecentRunGraph.class);
                 startActivity(intent);
             }
         });

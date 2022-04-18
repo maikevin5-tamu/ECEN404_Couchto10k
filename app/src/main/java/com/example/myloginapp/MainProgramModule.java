@@ -46,6 +46,7 @@ public class MainProgramModule extends AppCompatActivity {
             }
         });
 
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.RunningMetrics_dash:

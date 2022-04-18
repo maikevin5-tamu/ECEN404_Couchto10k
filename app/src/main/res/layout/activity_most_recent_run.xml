@@ -26,30 +26,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/MRR_title"
-        android:hint="Average Heart BPM during Run"
+        android:hint="Average Heart BPM"
         android:padding="20dp"
         android:drawableLeft="@drawable/ic_baseline_directions_run_24"
         android:drawablePadding="20dp"
         tools:ignore="MissingConstraints" />
 
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/BPM_Walk"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/BPM_Run"
-        android:hint="Average Heart BPM during Walk"
-        android:padding="20dp"
-        android:drawableLeft="@drawable/ic_baseline_directions_walk_24"
-        android:drawablePadding="20dp"
-        />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/Distance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/BPM_Walk"
-        android:hint="Distance Travelled"
+        android:layout_below="@id/BPM_Run"
+        android:hint="Distance Travelled (miles)"
         android:padding="20dp"
         android:drawableLeft="@drawable/ic_baseline_add_road_24"
         android:drawablePadding="20dp"
@@ -60,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/Distance"
-        android:hint="Breaths per Minute"
+        android:hint="VO2 Max"
         android:padding="20dp"
         android:drawableLeft="@drawable/ic_baseline_air_24"
         android:drawablePadding="20dp"

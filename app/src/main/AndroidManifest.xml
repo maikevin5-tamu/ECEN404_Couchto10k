@@ -21,6 +21,9 @@
         android:theme="@style/Theme.MyLoginApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".RecentRunGraph"
+            android:exported="true" />
+        <activity
             android:name=".IntAdvProgram"
             android:exported="true" />
         <activity

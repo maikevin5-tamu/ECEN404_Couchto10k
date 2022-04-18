@@ -43,8 +43,7 @@ public class MostRecentRun extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_most_recent_run);
 
-        TextInputEditText BPMRun_TextInput = findViewById(R.id.BPM_Run);
-        TextInputEditText BPMWalk_TextInput = findViewById(R.id.BPM_Walk);
+        TextInputEditText BPMAVG_TextInput = findViewById(R.id.BPM_Run);
         TextInputEditText Distance_TextInput = findViewById(R.id.Distance);
         TextInputEditText BrPM_TextInput = findViewById(R.id.BrPM);
         TextInputEditText Calories_TextInput = findViewById(R.id.Calories);
@@ -57,6 +56,7 @@ public class MostRecentRun extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 //String txt_UID = currentFirebaseUser.getUid();
                 String txt_email_node = currentFirebaseUser.getEmail();
@@ -67,7 +67,7 @@ public class MostRecentRun extends AppCompatActivity {
                 if (iend != -1) {
                     email_SS = txt_email_node.substring(0, iend); //this will give abc
                 }
-                StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child(email_SS + "/RunningMetrics/RecentRunRM.json");
+                StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child(email_SS + "/RunningMetrics/runningMetrics.json");
                 storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -83,17 +83,25 @@ public class MostRecentRun extends AppCompatActivity {
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                        int BPMRun = jsonObject.getInt("BPM Run");
-                                        int BPMWalk = jsonObject.getInt("BPM Walk");
+
+                                        int BPMAVG = jsonObject.getInt("BPM AVG");
                                         int Distance = jsonObject.getInt("Distance");
-                                        int BrPM = jsonObject.getInt("BrPM");
+                                        int VO2Max = jsonObject.getInt("VO2Max");
                                         int Calories = jsonObject.getInt("Calories");
 
-                                        BPMRun_TextInput.append(String.valueOf(BPMRun) + " BPM during Run (average)");
-                                        BPMWalk_TextInput.append(String.valueOf(BPMWalk) + " BPM during Walk (average)");
+                                        //reset in case multiple inputs
+
+                                        BPMAVG_TextInput.setText("");
+                                        Distance_TextInput.setText("");
+                                        BrPM_TextInput.setText("");
+                                        Calories_TextInput.setText("");
+
+                                        BPMAVG_TextInput.append(String.valueOf(BPMAVG) + " BPM");
                                         Distance_TextInput.append(String.valueOf(Distance) + " miles");
-                                        BrPM_TextInput.append(String.valueOf(BrPM) + " Breaths per Minute");
+                                        BrPM_TextInput.append(String.valueOf(VO2Max) + " L/min");
                                         Calories_TextInput.append(String.valueOf(Calories) + " Calories Burned");
+
+
 
 
                                     }
