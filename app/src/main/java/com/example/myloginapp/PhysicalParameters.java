@@ -71,6 +71,8 @@ public class PhysicalParameters extends New_User implements AdapterView.OnItemSe
                 String txt_age = age.getText().toString();
                 String txt_sex = spinner_sex.getSelectedItem().toString();
 
+
+
                 FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 // Toast.makeText(PhysicalParameters.this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
                 String txt_UID = currentFirebaseUser.getUid();
@@ -118,6 +120,10 @@ public class PhysicalParameters extends New_User implements AdapterView.OnItemSe
                                     databaseReference.child("User ID").child(email_SS).child("weight").setValue(txt_weight);
                                     databaseReference.child("User ID").child(email_SS).child("age").setValue(txt_age);
                                     databaseReference.child("User ID").child(email_SS).child("sex").setValue(txt_sex);
+
+                                    int heartrate_init = 220 - int_age;
+
+                                    databaseReference.child("User ID").child(email_SS).child("Max HR").setValue(heartrate_init);
 
                                     if (txt_sex.equals("Male")) {
                                         Intent intent = new Intent(PhysicalParameters.this, PhysicalParameters4.class);

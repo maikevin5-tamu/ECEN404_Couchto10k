@@ -73,8 +73,6 @@ public class PhysicalParameters4 extends AppCompatActivity {
                             databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Cardiovascular Disease").setValue(2);
                         }
                         else if (j == 2) {
-                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Respiratory Disease").setValue(0);
-                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Cardiovascular Disease").setValue(0);
                             databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Pregnancy").setValue(0);
                         }
                     }
@@ -100,7 +98,55 @@ public class PhysicalParameters4 extends AppCompatActivity {
                             email_SS = txt_email_node.substring(0 , iend); //this will give abc
                         }
 
+                        if (snapshot.child("User ID").child(email_SS).child("medical conditions").hasChild("None") && (snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("Respiratory Disease") || snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("Cardiovascular Disease"))) {
+                            Toast.makeText(PhysicalParameters4.this, "Invalid inputs, please try again", Toast.LENGTH_SHORT).show();
+                            rootRef.child("User ID").child(email_SS).child("medical conditions").removeValue();
+                        }
 
+                        else if (snapshot.child("User ID").child(email_SS).child("medical conditions").hasChild("Respiratory Disease") && (snapshot.child("User ID").child(email_SS).child("medical conditions").hasChild("Cardiovascular Disease"))) {
+                            Long heartrate_RT = (Long) snapshot.child("User ID").child(email_SS).child("Max HR").getValue();
+                            String HR_string = heartrate_RT.toString();
+                            int HR_int = Integer.parseInt(HR_string);
+                            int heartrate_new = HR_int - 25;
+                            databaseReference.child("User ID").child(email_SS).child("Max HR").setValue(heartrate_new);
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Pregnancy").setValue(0);
+                            Intent intent = new Intent(PhysicalParameters4.this, ExperiencePP.class);
+                            startActivity(intent);
+                        }
+
+                        else if (snapshot.child("User ID").child(email_SS).child("medical conditions").hasChild("Respiratory Disease")) {
+                            Long heartrate_RT = (Long) snapshot.child("User ID").child(email_SS).child("Max HR").getValue();
+                            String HR_string = heartrate_RT.toString();
+                            int HR_int = Integer.parseInt(HR_string);
+                            int heartrate_new = HR_int - 10;
+                            databaseReference.child("User ID").child(email_SS).child("Max HR").setValue(heartrate_new);
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Cardiovascular Disease").setValue(0);
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Pregnancy").setValue(0);
+                            Intent intent = new Intent(PhysicalParameters4.this, ExperiencePP.class);
+                            startActivity(intent);
+                        }
+
+                        else if (snapshot.child("User ID").child(email_SS).child("medical conditions").hasChild("Cardiovascular Disease")) {
+                            Long heartrate_RT = (Long) snapshot.child("User ID").child(email_SS).child("Max HR").getValue();
+                            String HR_string = heartrate_RT.toString();
+                            int HR_int = Integer.parseInt(HR_string);
+                            int heartrate_new = HR_int - 15;
+                            databaseReference.child("User ID").child(email_SS).child("Max HR").setValue(heartrate_new);
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Respiratory Disease").setValue(0);
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Pregnancy").setValue(0);
+                            Intent intent = new Intent(PhysicalParameters4.this, ExperiencePP.class);
+                            startActivity(intent);
+                        }
+
+                        else {
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Respiratory Disease").setValue(0);
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Cardiovascular Disease").setValue(0);
+                            databaseReference.child("User ID").child(email_SS).child("medical conditions").child("Pregnancy").setValue(0);
+                            Intent intent = new Intent(PhysicalParameters4.this, ExperiencePP.class);
+                            startActivity(intent);
+                        }
+
+/***
                         if (snapshot.child("User ID").child(email_SS).child("medical conditions").hasChild("None") && (snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("Respiratory Disease") || snapshot.child("User ID").child(txt_UID).child("medical conditions").hasChild("Cardiovascular Disease"))) {
                             Toast.makeText(PhysicalParameters4.this, "Invalid inputs, please try again", Toast.LENGTH_SHORT).show();
                             rootRef.child("User ID").child(email_SS).child("medical conditions").removeValue();
@@ -116,6 +162,8 @@ public class PhysicalParameters4 extends AppCompatActivity {
                             Intent intent = new Intent(PhysicalParameters4.this, ExperiencePP.class);
                             startActivity(intent);
                         }
+
+***/
                     }
 
                     @Override
